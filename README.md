@@ -11,7 +11,7 @@ If not using Github desktop ensure to always pull requests using VS Code version
 # Setting up django Virtual environment 
 
 In the repository whenever you start create a virutal environment (this is so external libraries are only installed on the project and not the system)    
-python -m venv venv then then venv\Scripts\activate    
+`python -m venv venv` then then venv\Scripts\activate    
 To install dependencies other people may have added run:    
 pip install -r requirements.txt       
 
