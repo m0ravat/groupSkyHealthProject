@@ -2,7 +2,7 @@
 
 Download python 3.12.8 if you don't have it  per the project requirements [here](https://www.python.org/downloads/release/python-3128/)    
 Install git if you havent already too    
-Clone the repository by isnatlling GitHub Desktop (Easy way) or by cloning it, to do so run:     
+Clone the repository by isnatlling GitHub Desktop (Easy way) or by cloning it, to do so run the following commands on a VS Code terminal :     
 `git clone https://github.com/m0ravat/groupSkyHealthProject.git` and            `cd repo` to go into the repository folder.    
 
 If not using Github desktop ensure to always pull requests using VS Code version control to pull changes from teammates, and to push your requests when you make them, the more meaningful the commit messages the easier it is to figure out what has been changed and the more marks we get. 
