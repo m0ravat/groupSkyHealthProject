@@ -17,7 +17,7 @@ To install dependencies other people may have added run:
 
 If you install a library or dependency using pip ensure to save it to requirements.txt so we can all install it too:    
 `pip freeze > requirements.txt`     
-The .gitignore is set to ignore the venv so you have to create a new virtual environment everytime you run the project and install the requirements in the case someone adding something new. 
+The .gitignore is set to ignore the venv since different machines may have slightly different code so you have to create a new virtual environment everytime you run the project and install the requirements in the case someone adding something new. 
 
 
 
