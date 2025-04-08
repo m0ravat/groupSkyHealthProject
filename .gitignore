@@ -1,1 +1,3 @@
 venv/
+#remove the hashtage below to ignore the .env file, its commented out so it can be seen in github but outside of cwk would be ignored
+# skyHealthProject/.env
