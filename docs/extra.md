@@ -1,3 +1,7 @@
+# Virtual Environment 
+
+The reason why we use a virtual environment is so every person doesn't have to manually download every extension on their machine. This is done so if that extension is updated down the line it won't make a difference since we have defined our versions in the Requirements.txt file.
+
 # The .gitignore file
 
 The .gitignore file is designed to ignore files for security reasons or otherwise, so while you see it on VS Code it isn't visible on the GitHub repo site. I ignored the venv folder which is created when starting a virtual environment since some files may be exclusive to certain local machines/operating systems.        
