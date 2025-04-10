@@ -3,6 +3,7 @@
 - [Installation Requirements](docs/installation.md)
 - [Running the project](docs/run.md)
 - [Project Structure](docs/structure.md)
+- [Django Info](docs/django.md)
 - [Extra relevant info](docs/extra.md)
 
 
