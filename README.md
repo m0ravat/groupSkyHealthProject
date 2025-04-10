@@ -1,9 +1,10 @@
-   # Relevant Links for information on project setup etc
-    
-    - [Installation Requirements](docs/installation.md)
-    - [Running the project](docs/run.md)
-    - [Project Structure](docs/structure.md)
-    - [Extra relevant info](docs/extra.md)
+# Relevant Links for information on project setup etc
+
+- [Installation Requirements](docs/installation.md)
+- [Running the project](docs/run.md)
+- [Project Structure](docs/structure.md)
+- [Extra relevant info](docs/extra.md)
+
 
    # To run this project short version (read the docs first for context): 
 
