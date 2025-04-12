@@ -1,12 +1,13 @@
 from django.db import models
 from core.models import User
-# Create your models here.
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Session(models.Model):
     Quarter_Choices = [("Q1", "Q1"), ("Q2", "Q2"), ("Q3", "Q3"), ("Q4", "Q4")]
     sessionId = models.AutoField(primary_key=True)
-    sessionYear = models.PositiveSmallIntegerField(max_length=4)
+    sessionYear = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(2000), MaxValueValidator(2100)]
+    )
     sessionQuarter = models.CharField(choices=Quarter_Choices, max_length=2)
 
     class Meta:
@@ -22,21 +23,29 @@ class SessionAssignment(models.Model):
     class Meta:
         db_table = "Session_Assignment"
 
+
 class Card(models.Model):
     cardId = models.AutoField(primary_key=True)
     cardName = models.CharField(max_length=100)
     cardDesc = models.TextField()
 
     class Meta:
-        db_table= "Card"
+        db_table = "Card"
 
 
 class Vote(models.Model):
-    Int_Choices = [(3, 3), (1, 1), (2, 2)]
+    Int_Choices = [(1, 1), (2, 2), (3, 3)]
     voteId = models.AutoField(primary_key=True)
-    rating = models.IntegerField(choices=Int_Choices, max_length=1)
-    progress = models.IntegerField(choices=Int_Choices, max_length=1)
+    rating = models.IntegerField(
+        choices=Int_Choices,
+        validators=[MinValueValidator(1), MaxValueValidator(3)]
+    )
+    progress = models.IntegerField(
+        choices=Int_Choices,
+        validators=[MinValueValidator(1), MaxValueValidator(3)]
+    )
     cardId = models.ForeignKey(Card, on_delete=models.SET_NULL, null=True, related_name="BelongsTo")
     sessionAssignId = models.ForeignKey(SessionAssignment, on_delete=models.SET_NULL, null=True, related_name="hasSession")
+
     class Meta:
         db_table = "Vote"
