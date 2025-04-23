@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from templates import *
 # Create your views here.
 
-def stats(request): 
+def loadStats(request): 
     return render(request, 'statsPage.html')
 
 def engStats(request):
