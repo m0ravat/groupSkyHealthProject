@@ -23,7 +23,6 @@ class SessionAssignment(models.Model):
     class Meta:
         db_table = "Session_Assignment"
 
-#The code below was done by Iqra Shah (w1973224)
 class Card(models.Model):
     cardId = models.AutoField(primary_key=True)
     cardName = models.CharField(max_length=100)
