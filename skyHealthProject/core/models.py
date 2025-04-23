@@ -39,7 +39,6 @@ class Card(models.Model):
     cardId = models.CharField(max_length=10, primary_key=True)
     cardName = models.CharField(max_length=100)
     cardDesc = models.TextField()
-
     class Meta:
         db_table = "Card"
 
@@ -48,7 +47,6 @@ class Session(models.Model):
     sessionId = models.CharField(max_length=10, primary_key=True)
     sessionYear = models.CharField(max_length=10)
     sessionQuarter = models.CharField(max_length=10)
-
     class Meta:
         db_table = "Session"
 
@@ -58,7 +56,6 @@ class SessionAssignment(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE)
     sessionId = models.ForeignKey(Session, on_delete=models.CASCADE)
     additionalComments = models.TextField(null=True, blank=True)
-
     class Meta:
         db_table = "SessionAssignment"
 
@@ -71,6 +68,5 @@ class Vote(models.Model):
     sessionId = models.ForeignKey(Session, on_delete=models.CASCADE)
     username = models.ForeignKey(User, on_delete=models.CASCADE)
     assignId = models.ForeignKey(SessionAssignment, on_delete=models.CASCADE)
-
     class Meta:
         db_table = "Vote"
