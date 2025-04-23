@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'user',
     'quiz',
     'core',
+    'captcha',
+    'core'
 ]
 
 MIDDLEWARE = [
