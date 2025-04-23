@@ -1,3 +1,4 @@
+#The code below was done by Iqra Shah (w1973224)
 from core.models import User, Department, Team, SessionAssignment, Session, Vote, Card
 
 # ------ Users ------ #
