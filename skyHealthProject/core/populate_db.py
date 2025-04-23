@@ -1,21 +1,25 @@
-from skyHealthProject.models import User, Department, Team, SessionAssignment, Session, Vote, Card
+from core.models import User, Department, Team, SessionAssignment, Session, Vote, Card
 
 # ------ Users ------ #
 users = [
+    # Engineers
     ("jsmith", "John", "Smith", "jsmith@sky.com", "Pword123!", "engineer"),
+    ("engineer1", "Emma", "Watson", "emma1@sky.com", "Pword123!", "engineer"),
+    ("engineer2", "Liam", "Jones", "liam1@sky.com", "Pword123!", "engineer"),
+    ("engineer3", "Noah", "Taylor", "noah1@sky.com", "Pword123!", "engineer"),
+    ("engineer4", "Olivia", "Brown", "olivia1@sky.com", "Pword123!", "engineer"),
+    ("engineer5", "Sophia", "Davis", "sophia1@sky.com", "Pword123!", "engineer"),
+    # Team Leaders
     ("akhan", "Aisha", "Khan", "akhan@sky.com", "Pword456!", "teamLead"),
     ("ptart", "Peter", "Tart", "ptart@sky.com", "Pword655!", "teamLead"),
     ("jthomas", "Jones", "Thomas", "jthomas@sky.com", "Pword987!", "teamLead"),
     ("rpatel", "Rishi", "Patel", "rpatel@sky.com", "Pword432!", "teamLead"),
     ("lroberts", "Lewis", "Roberts", "lroberts@sky.com", "Pword111!", "teamLead"),
+    # Department Leads
     ("fsheikh", "Fuad", "Sheikh", "fsheikh@sky.com", "Pword789!", "departmentLead"),
     ("dnguyen", "Don", "Nguyen", "dnguyen@sky.com", "Pword777!", "departmentLead"),
-    ("elane", "Ellie", "Lane", "elane@sky.com", "Pword198!", "departmentLead"),
-    ("awalker", "Alice", "Walker", "awalker@sky.com", "Pword375!", "departmentLead"),
+    # Senior Manager
     ("msingh", "Mandeep", "Singh", "msingh@sky.com", "Pword000!", "seniorManager"),
-    ("cwilliams", "Callum", "Williams", "cwilliams@sky.com", "Pword333!", "seniorManager"),
-    ("jclark", "Jager", "Clark", "jclark@sky.com", "Pword555!", "seniorManager"),
-    ("hali", "Hussan", "Ali", "hali@sky.com", "Pword786!", "seniorManager"),
 ]
 
 for u in users:
@@ -24,29 +28,27 @@ for u in users:
 # ------ Departments ------ #
 departments = [
     ("networkEngineering", "msingh", "fsheikh"),
-    ("fieldEngineering", "cwilliams", "dnguyen"),
-    ("faultDiagnostics", "jclark", "elane"),
-    ("qualityAssurance", "hali", "awalker"),
+    ("fieldEngineering", "msingh", "dnguyen"),
 ]
 
 for d in departments:
-    Department.objects.get_or_create(deptName=d[0],
-                                     seniorManager=User.objects.get(username=d[1]),
-                                     deptLeader=User.objects.get(username=d[2]))
+    Department.objects.get_or_create(deptName=d[0], seniorManager=User.objects.get(username=d[1]), deptLeader=User.objects.get(username=d[2]))
 
 # ------ Teams ------ #
 teams = [
+    # Network Engineering Department
     ("fibrePlanningTeam", "networkEngineering", "akhan"),
-    ("HomeInstallationTeam", "fieldEngineering", "ptart"),
-    ("faultMonitoringTeam", "faultDiagnostics", "jthomas"),
-    ("faultDiagnostics", "faultDiagnostics", "rpatel"),
-    ("firmwareQATeam", "qualityAssurance", "lroberts"),
+    ("networkSupportTeam", "networkEngineering", "ptart"),
+    ("wirelessSolutionsTeam", "networkEngineering", "rpatel"),
+    
+    # Field Engineering Department
+    ("homeInstallationTeam", "fieldEngineering", "jthomas"),
+    ("fieldSupportTeam", "fieldEngineering", "lroberts"),
+    ("remoteMonitoringTeam", "fieldEngineering", "fsheikh"),
 ]
 
 for t in teams:
-    Team.objects.get_or_create(teamName=t[0],
-                               deptName=Department.objects.get(deptName=t[1]),
-                               teamLeader=User.objects.get(username=t[2]))
+    Team.objects.get_or_create(teamName=t[0], deptName=Department.objects.get(deptName=t[1]), teamLeader=User.objects.get(username=t[2]))
 
 # ------ Sessions ------ #
 sessions = [
@@ -59,15 +61,12 @@ for s in sessions:
 
 # ------ Session Assignment ------ #
 assignments = [
-    ("A1", "fsheikh", "S2025Q1", "There has been a noticeable improvement in receiving support since the last time I took the quiz."),
-    ("A2", "msingh", "S2025Q2", "I don’t feel like the work I’m currently doing is delivering value."),
+    ("A1", "jsmith", "S2025Q1", "There has been a noticeable improvement in receiving support since the last time I took the quiz."),
+    ("A2", "jsmith", "S2025Q2", "I don’t feel like the work I’m currently doing is delivering value."),
 ]
 
 for a in assignments:
-    SessionAssignment.objects.get_or_create(assignId=a[0],
-                                            username=User.objects.get(username=a[1]),
-                                            sessionId=Session.objects.get(sessionId=a[2]),
-                                            additionalComments=a[3])
+    SessionAssignment.objects.get_or_create(assignId=a[0], username=User.objects.get(username=a[1]), sessionId=Session.objects.get(sessionId=a[2]), additionalComments=a[3])
 
 # ------ Cards ------ #
 cards = [
@@ -89,7 +88,6 @@ for c in cards:
 
 # ------ Votes ------ #
 votes = [
-    # S2025Q1 - A1
     ("V1", 3, 60, "C1", "S2025Q1", "jsmith", "A1"),
     ("V2", 4, 70, "C2", "S2025Q1", "jsmith", "A1"),
     ("V3", 5, 65, "C3", "S2025Q1", "jsmith", "A1"),
@@ -101,8 +99,6 @@ votes = [
     ("V9", 3, 62, "C9", "S2025Q1", "jsmith", "A1"),
     ("V10", 4, 68, "C10", "S2025Q1", "jsmith", "A1"),
     ("V11", 3, 70, "C11", "S2025Q1", "jsmith", "A1"),
-
-    # S2025Q2 - A2
     ("V12", 5, 85, "C1", "S2025Q2", "jsmith", "A2"),
     ("V13", 4, 80, "C2", "S2025Q2", "jsmith", "A2"),
     ("V14", 5, 85, "C3", "S2025Q2", "jsmith", "A2"),
@@ -117,10 +113,4 @@ votes = [
 ]
 
 for v in votes:
-    Vote.objects.get_or_create(voteId=v[0],
-                               rating=v[1],
-                               progress=v[2],
-                               cardId=Card.objects.get(cardId=v[3]),
-                               sessionId=Session.objects.get(sessionId=v[4]),
-                               username=User.objects.get(username=v[5]),
-                               assignId=SessionAssignment.objects.get(assignId=v[6]))
+    Vote.objects.get_or_create(voteId=v[0], rating=v[1], progress=v[2], cardId=Card.objects.get(cardId=v[3]), sessionId=Session.objects.get(sessionId=v[4]), username=User.objects.get(username=v[5]), assignId=SessionAssignment.objects.get(assignId=v[6]))
