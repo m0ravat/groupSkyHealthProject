@@ -1,5 +1,23 @@
 from django.db import models
 
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None):
+        if not email:
+            raise ValueError("Email is required")
+        user = self.model(email=self.normalize_email(email))
+        user.set_password(password)  # hashes password
+        user.save(using=self._db)
+        return user
+
+class User(AbstractBaseUser):
+    email = models.EmailField(unique=True)
+    USERNAME_FIELD = 'email'
+
+    objects = UserManager()
+
+    def __str__(self):
+        return self.email
+        
 class User(models.Model):
     Role_Choices = [
         ("Engineer", "Engineer"),
