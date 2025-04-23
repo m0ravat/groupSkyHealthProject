@@ -35,6 +35,7 @@ class Team (models.Model):
     class Meta:
         db_table = "Team"
 
+#The code below was done by Iqra Shah (w1973224)
 class Card(models.Model):
     cardId = models.CharField(max_length=10, primary_key=True)
     cardName = models.CharField(max_length=100)
