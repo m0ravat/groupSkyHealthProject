@@ -1,6 +1,146 @@
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Sign Up</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Sign Up</title>
+    
+    <link rel="stylesheet" href="{% static 'input.css' %}">
+    <link rel="stylesheet" href="{% static 'output.css' %}">
+    
+    <style>
+        body {
+            background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
+        }
+    </style>
+</head>
 
+<body>
+    <nav class="bg-white border-2 border-b-gray-500 border-t-gray-500 p-2 flex items-center justify-between">
+        <img src="{% static 'Images/_Logo.png' %}" alt="Sky Logo" class="w-14">
+        
+        <p class="text-lg">
+            Believe in Better - A better and healthier future at Sky UK for customers, employees and everyone.
+        </p>
+        
+        <div class="flex gap-4 text-lg">
+            <a href="{% url 'login' %}" class="{% if request.path == '/login/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">Login</a>
+            <a href="{% url 'signup' %}" class="{% if request.path == '/signup/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">Signup</a>
+        </div>
+    </nav>
+
+    <div class="h-[92.5%] w-full flex items-center justify-center p-2 px-10 bg-cover bg-center bg-no-repeat"
+         style="background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');">
+
+        <form action="" class="h-[85%] bg-white w-2/6 right-0 border-white border-2 rounded-3xl text-center p-2 text-2xl"
+              style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%)">
+
+            <h1 class="mb-4 font-bold text-4xl">Sign Up!</h1>
+
+            <label class="block">What is your Role *
+                <select class="border-2 w-3/6 mb-4 border-black">
+                    <option value="null">Select Your Role</option>
+                    <option value="">Engineer</option>
+                    <option value="">Team Lead</option>
+                    <option value="">Department Lead</option>
+                    <option value="">Senior Manager</option>
+                </select>
+            </label>
+
+            <label class="block">Department *
+                <select class="border-2 w-3/6 mb-4 border-black">
+                    <option value="null">Select Your Department</option>
+                    <option value="">Network Engineering</option>
+                    <option value="">Field Engineering</option>
+                </select>
+            </label>
+
+            <label class="block">Team *
+                <select class="border-2 w-3/6 mb-4 border-black">
+                    <option value="null">Select Your Team</option>
+                    <option value="">Fibre Planning</option>
+                    <option value="">Network Support</option>
+                    <option value="">Wireless Solutions</option>
+                    <option value="">Home Installation</option>
+                    <option value="">Field Support</option>
+                    <option value="">Remote Mentoring</option>
+                </select>
+            </label>
+
+            <label class="block text-left ml-20">Email *<br>
+                <input type="text" class="border-2 w-5/6 p-2 border-black rounded-lg">
+            </label> <br>
+
+            <label class="block text-left ml-20">Phone Number *<br>
+                <input type="password" class="border-2 w-5/6 mb-2 p-2 border-black rounded-lg">
+            </label><br>
+
+            <label class="block text-left ml-20">Full Name *<br>
+                <input type="text" class="border-2 w-5/6 p-2 border-black rounded-lg">
+            </label> <br>
+
+            <label class="block text-left ml-20">Password *<br>
+                <input type="password" class="border-2 w-5/6 mb-2 p-2 border-black rounded-lg">
+            </label><br>
+
+            <label class="block text-left ml-20">Re-enter Password *<br>
+                <input type="password" class="border-2 w-5/6 mb-2 p-2 border-black rounded-lg">
+            </label>
+
+            <button type="submit" class="mt-10 text-3xl border-2 mb-6 border-black bg-white p-2 w-2/6 rounded-md">
+                Register
+            </button>
+
+            <p>
+                Already have an account? 
+                <a href="" class="border-b-black border-b-2">Login</a>
+            </p>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const roleSelect = document.getElementById('role');
+            const departmentSelect = document.getElementById('department');
+            const teamSelect = document.getElementById('team');
+
+            roleSelect.addEventListener('change', function () {
+                const selectedRole = this.value;
+
+                if (selectedRole === 'manager') {
+                    departmentSelect.innerHTML = '<option value="">Loading...</option>';
+
+                    fetch('/get_departments/')
+                        .then(response => response.json())
+                        .then(data => {
+                            departmentSelect.innerHTML = '<option value="">Select Department</option>';
+                            data.departments.forEach(dep => {
+                                const option = new Option(dep.name, dep.id);
+                                departmentSelect.add(option);
+                            });
+                        });
+                } else {
+                    departmentSelect.innerHTML = '<option value="">Not applicable</option>';
+                }
+            });
+
+            departmentSelect.addEventListener('change', function () {
+                const departmentId = this.value;
+                if (!departmentId) return;
+
+                teamSelect.innerHTML = '<option value="">Loading...</option>';
+
+                fetch(`/get_teams/${departmentId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        teamSelect.innerHTML = '<option value="">Select Team</option>';
+                        data.teams.forEach(team => {
+                            const option = new Option(team.name, team.id);
+                            teamSelect.add(option);
+                        });
+                    });
+            });
+        });
+    </script>
+</body>
+</html>

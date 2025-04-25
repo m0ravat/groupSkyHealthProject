@@ -18,10 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from core import views
 
+#Lines 24-32 were done by Iqra Shah (w1973224)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('stats/', include('stats.urls')),
     path('captcha/', include('captcha.urls')),
     path('signup/', views.signup_view, name='signup'),
     path('login/', views.login_view, name='login'),
+    path('', views.home_view, name='home'),
+    path("d-lead/", views.d_lead_dashboard_view, name="d_lead_dashboard"),
+    path("engineer/", views.engineer_dashboard_view, name="engineer_dashboard"),
+    path("senior/", views.senior_dashboard_view, name="senior_dashboard"),
+    path("team-lead/", views.team_lead_dashboard_view, name="team_lead_dashboard"),
 ]

@@ -1,9 +1,11 @@
+#This file was done by Iqra Shah (w1973224)
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
 from .forms import SignupForm, LoginForm 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 
-# Iqra Shah (w1973224)
+def home_view(request):
+    return render(request, 'homePage.html')
+
 def signup_view(request):
     if request.method == "POST":
         form = SignupForm(request.POST)
@@ -29,3 +31,16 @@ def login_view(request):
     else:
         form = LoginForm()
     return render(request, "login.html", {"form": form})
+
+#Views for all dashboards
+def d_lead_dashboard_view(request):
+    return render(request, "dLeadDashboard.html")
+
+def engineer_dashboard_view(request):
+    return render(request, "engineerDashboard.html")
+
+def senior_dashboard_view(request):
+    return render(request, "seniorDashboard.html")
+
+def team_lead_dashboard_view(request):
+    return render(request, "teamLead_dashboard.html")
