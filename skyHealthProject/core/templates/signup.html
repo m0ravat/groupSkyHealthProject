@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,72 @@
     <style>
         body {
             background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
+            margin: 0;
+            padding: 0;
+        }
+
+        .image {
+            background-image: url('/Images/trello.png');
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 300px; 
+        }
+
+        form {
+            width: 40%; 
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: right; 
+            font-size: 20px;
+            height: auto;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1rem; 
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 4px 10px; 
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        .sign-up-header {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .register-btn {
+            padding: 8px 30px;
+            margin-top: 10px;
+            border: 2px solid #ccc;
+            border-radius: 50px;
+            background-color: #f8f8f8;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            color: black;
+            font-size: 20px;
+        }
+
+        .register-btn:hover {
+            background-color: transparent;
+            color: black; 
+            transition: all 0.3s ease-in-out;
         }
     </style>
 </head>
@@ -18,11 +85,9 @@
 <body>
     <nav class="bg-white border-2 border-b-gray-500 border-t-gray-500 p-2 flex items-center justify-between">
         <img src="{% static 'Images/_Logo.png' %}" alt="Sky Logo" class="w-14">
-        
         <p class="text-lg">
             Believe in Better - A better and healthier future at Sky UK for customers, employees and everyone.
         </p>
-        
         <div class="flex gap-4 text-lg">
             <a href="{% url 'login' %}" class="{% if request.path == '/login/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">Login</a>
             <a href="{% url 'signup' %}" class="{% if request.path == '/signup/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">Signup</a>
@@ -32,14 +97,13 @@
     <div class="h-[92.5%] w-full flex items-center justify-center p-2 px-10 bg-cover bg-center bg-no-repeat"
          style="background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');">
 
-        <form action="" class="h-[85%] bg-white w-2/6 right-0 border-white border-2 rounded-3xl text-center p-2 text-2xl"
+        <form action="" class="bg-white border-white border-2 rounded-3xl text-center p-2 text-2xl"
               style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%)">
+            <h1 class="sign-up-header">Sign Up!</h1>
 
-            <h1 class="mb-4 font-bold text-4xl">Sign Up!</h1>
-
-            <label class="block">What is your Role *
-                <select class="border-2 w-3/6 mb-4 border-black">
-                    <option value="null">Select Your Role</option>
+            <label>What is your role?
+                <select class="border-2 mb-4">
+                    <option value="null">Select your role *</option>
                     <option value="">Engineer</option>
                     <option value="">Team Lead</option>
                     <option value="">Department Lead</option>
@@ -47,17 +111,17 @@
                 </select>
             </label>
 
-            <label class="block">Department *
-                <select class="border-2 w-3/6 mb-4 border-black">
-                    <option value="null">Select Your Department</option>
+            <label>What is your department?
+                <select class="border-2 mb-4">
+                    <option value="null">Select your department *</option>
                     <option value="">Network Engineering</option>
                     <option value="">Field Engineering</option>
                 </select>
             </label>
 
-            <label class="block">Team *
-                <select class="border-2 w-3/6 mb-4 border-black">
-                    <option value="null">Select Your Team</option>
+            <label>What is your team?
+                <select class="border-2 mb-4">
+                    <option value="null">Select your team *</option>
                     <option value="">Fibre Planning</option>
                     <option value="">Network Support</option>
                     <option value="">Wireless Solutions</option>
@@ -67,80 +131,35 @@
                 </select>
             </label>
 
-            <label class="block text-left ml-20">Email *<br>
-                <input type="text" class="border-2 w-5/6 p-2 border-black rounded-lg">
-            </label> <br>
+            <label>Email *
+                <input type="text" class="border-2 mb-2">
+            </label> 
 
-            <label class="block text-left ml-20">Phone Number *<br>
-                <input type="password" class="border-2 w-5/6 mb-2 p-2 border-black rounded-lg">
-            </label><br>
-
-            <label class="block text-left ml-20">Full Name *<br>
-                <input type="text" class="border-2 w-5/6 p-2 border-black rounded-lg">
-            </label> <br>
-
-            <label class="block text-left ml-20">Password *<br>
-                <input type="password" class="border-2 w-5/6 mb-2 p-2 border-black rounded-lg">
-            </label><br>
-
-            <label class="block text-left ml-20">Re-enter Password *<br>
-                <input type="password" class="border-2 w-5/6 mb-2 p-2 border-black rounded-lg">
+            <label>Phone Number *
+                <input type="password" class="border-2 mb-2">
             </label>
 
-            <button type="submit" class="mt-10 text-3xl border-2 mb-6 border-black bg-white p-2 w-2/6 rounded-md">
-                Register
-            </button>
+            <label>Full Name *
+                <input type="text" class="border-2 mb-2">
+            </label>
 
-            <p>
-                Already have an account? 
-                <a href="" class="border-b-black border-b-2">Login</a>
-            </p>
+            <label>Password *
+                <input type="password" class="border-2 mb-2">
+            </label>
+
+            <label>Re-enter Password *
+                <input type="password" class="border-2 mb-2">
+            </label>
+
+        <button type="submit" class="register-btn">Register</button>
+
+            <div class="form-footer">
+                <p>Already have an account? 
+                    <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-black-500">Login</a>
+                </p>
+            </div>
         </form>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const roleSelect = document.getElementById('role');
-            const departmentSelect = document.getElementById('department');
-            const teamSelect = document.getElementById('team');
-
-            roleSelect.addEventListener('change', function () {
-                const selectedRole = this.value;
-
-                if (selectedRole === 'manager') {
-                    departmentSelect.innerHTML = '<option value="">Loading...</option>';
-
-                    fetch('/get_departments/')
-                        .then(response => response.json())
-                        .then(data => {
-                            departmentSelect.innerHTML = '<option value="">Select Department</option>';
-                            data.departments.forEach(dep => {
-                                const option = new Option(dep.name, dep.id);
-                                departmentSelect.add(option);
-                            });
-                        });
-                } else {
-                    departmentSelect.innerHTML = '<option value="">Not applicable</option>';
-                }
-            });
-
-            departmentSelect.addEventListener('change', function () {
-                const departmentId = this.value;
-                if (!departmentId) return;
-
-                teamSelect.innerHTML = '<option value="">Loading...</option>';
-
-                fetch(`/get_teams/${departmentId}/`)
-                    .then(response => response.json())
-                    .then(data => {
-                        teamSelect.innerHTML = '<option value="">Select Team</option>';
-                        data.teams.forEach(team => {
-                            const option = new Option(team.name, team.id);
-                            teamSelect.add(option);
-                        });
-                    });
-            });
-        });
-    </script>
 </body>
 </html>
