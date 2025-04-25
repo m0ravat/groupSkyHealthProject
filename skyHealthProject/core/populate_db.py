@@ -86,32 +86,3 @@ cards = [
 
 for c in cards:
     Card.objects.get_or_create(cardId=c[0], cardName=c[1], cardDesc=c[2])
-
-# ------ Votes ------ #
-votes = [
-    ("V1", 3, 60, "C1", "S2025Q1", "jsmith", "A1"),
-    ("V2", 4, 70, "C2", "S2025Q1", "jsmith", "A1"),
-    ("V3", 5, 65, "C3", "S2025Q1", "jsmith", "A1"),
-    ("V4", 4, 55, "C4", "S2025Q1", "jsmith", "A1"),
-    ("V5", 3, 60, "C5", "S2025Q1", "jsmith", "A1"),
-    ("V6", 3, 72, "C6", "S2025Q1", "jsmith", "A1"),
-    ("V7", 5, 64, "C7", "S2025Q1", "jsmith", "A1"),
-    ("V8", 5, 50, "C8", "S2025Q1", "jsmith", "A1"),
-    ("V9", 3, 62, "C9", "S2025Q1", "jsmith", "A1"),
-    ("V10", 4, 68, "C10", "S2025Q1", "jsmith", "A1"),
-    ("V11", 3, 70, "C11", "S2025Q1", "jsmith", "A1"),
-    ("V12", 5, 85, "C1", "S2025Q2", "jsmith", "A2"),
-    ("V13", 4, 80, "C2", "S2025Q2", "jsmith", "A2"),
-    ("V14", 5, 85, "C3", "S2025Q2", "jsmith", "A2"),
-    ("V15", 5, 65, "C4", "S2025Q2", "jsmith", "A2"),
-    ("V16", 4, 70, "C5", "S2025Q2", "jsmith", "A2"),
-    ("V17", 5, 70, "C6", "S2025Q2", "jsmith", "A2"),
-    ("V18", 3, 60, "C7", "S2025Q2", "jsmith", "A2"),
-    ("V19", 3, 74, "C8", "S2025Q2", "jsmith", "A2"),
-    ("V20", 4, 80, "C9", "S2025Q2", "jsmith", "A2"),
-    ("V21", 4, 90, "C10", "S2025Q2", "jsmith", "A2"),
-    ("V22", 3, 67, "C11", "S2025Q2", "jsmith", "A2"),
-]
-
-for v in votes:
-    Vote.objects.get_or_create(voteId=v[0], rating=v[1], progress=v[2], cardId=Card.objects.get(cardId=v[3]), sessionId=Session.objects.get(sessionId=v[4]), username=User.objects.get(username=v[5]), assignId=SessionAssignment.objects.get(assignId=v[6]))
