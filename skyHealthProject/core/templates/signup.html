@@ -1,14 +1,14 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>Sign Up</title>
-    
     <link rel="stylesheet" href="{% static 'input.css' %}">
     <link rel="stylesheet" href="{% static 'output.css' %}">
-    
+
     <style>
         body {
             background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
@@ -21,47 +21,46 @@
             background-size: cover;
             background-position: center;
             width: 100%;
-            height: 300px; 
+            height: 300px;
         }
 
         form {
-            width: 40%; 
-            padding: 20px;
-            margin-top: 50px;
+            width: 40%;
+            padding: 0px 20px 20px 20px;  
+            margin-top: 10px;
             margin-bottom: 50px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: right; 
+            text-align: right;
             font-size: 20px;
-            height: auto;
+            min-height: 500px;
         }
 
         form label {
             display: block;
-            margin-bottom: 5px;
-            font-size: 1rem; 
+            margin-bottom: 3px;
+            font-size: 1rem;
         }
 
         form input, form select {
             width: 100%;
-            padding: 4px 10px; 
-            margin-bottom: 12px;
+            padding: 4px 8px;
+            margin-bottom: 8px;
             border: 1px solid #000000;
-            border-radius: 8px;
+            border-radius: 5px;
             font-size: 0.875rem;
         }
 
         .form-row {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 3px;
         }
 
         .form-row label {
             width: 40%;
             margin-right: 10px;
-            font-size: 1rem;
         }
 
         .form-row input,
@@ -69,20 +68,20 @@
             flex: 1;
         }
 
+        .form-footer {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
         .centered-field {
             text-align: center;
             margin-bottom: 8px;
         }
 
-        .centered-field label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 1rem;
-        }
-
         .centered-field input {
             width: 80%;
-            padding: 6px 6px;
+            padding: 2px 5px;
             border: 1.5px solid #000000;
             border-radius: 8px;
             font-size: 0.875rem;
@@ -90,48 +89,36 @@
 
         .sign-up-header {
             font-size: 1.5rem;
-            margin-bottom: 25px;
+            margin-top: 0;
+            margin-bottom: 20px;
             font-weight: bold;
         }
 
-        .form-footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 1rem;
-        }
-
         .register-btn {
-            padding: 8px 30px;
-            margin-top: 10px;
+            padding: 5px 20px;
+            margin-top: 5px;
             border: 2px solid #000000;
             border-radius: 50px;
             background-color: #f8f8f8;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
-            color: black;
-            font-size: 20px;
+            font-size: 16px;
         }
-
         .register-btn:hover {
             background-color: transparent;
-            color: black; 
-            transition: all 0.3s ease-in-out;
+            color: black;
         }
 
         @media (max-width: 768px) {
-        .sign-up-header {
-            font-size: 1.5rem;
-        }
+            form {
+                padding: 15px;
+                font-size: 14px;
+            }
 
-        form {
-            padding: 15px;
-            font-size: 14px;
+            .register-btn {
+                font-size: 16px;
+            }
         }
-
-        .register-btn {
-            font-size: 16px;
-        }
-    }
     </style>
 </head>
 
@@ -147,92 +134,89 @@
         </div>
     </nav>
 
-    <div class="signup-container" style="
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');
-    background-size: cover;
-    background-position: center;">
+    <div style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');
+        background-size: cover;
+        background-position: center;">
 
-<form action="" class="bg-white border-white border-2 rounded-3xl text-center p-6 text-2xl"
-style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
-   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: left;">
+        <form action="" class="bg-white border-white border-2 rounded-3xl text-center p-6 text-2xl"
+            style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: left; min-height: 500px;">
+            <h1 class="sign-up-header text-center">Sign Up!</h1>
 
-    <h1 class="sign-up-header text-center">Sign Up!</h1>
+            <div class="form-row">
+                <label for="role">What is your role?</label>
+                <select id="role">
+                    <option value="null">Select your role *</option>
+                    <option>Engineer</option>
+                    <option>Team Lead</option>
+                    <option>Department Lead</option>
+                    <option>Senior Manager</option>
+                </select>
+            </div>
 
-    <div class="form-row">
-        <label for="role">What is your role?</label>
-        <select id="role">
-            <option value="null">Select your role *</option>
-            <option>Engineer</option>
-            <option>Team Lead</option>
-            <option>Department Lead</option>
-            <option>Senior Manager</option>
-        </select>
-    </div>
+            <div class="form-row">
+                <label for="department">What is your department?</label>
+                <select id="department">
+                    <option value="null">Select your department *</option>
+                    <option>Network Engineering</option>
+                    <option>Field Engineering</option>
+                </select>
+            </div>
 
-    <div class="form-row">
-        <label for="department">What is your department?</label>
-        <select id="department">
-            <option value="null">Select your department *</option>
-            <option>Network Engineering</option>
-            <option>Field Engineering</option>
-        </select>
-    </div>
+            <div class="form-row">
+                <label for="team">What is your team?</label>
+                <select id="team">
+                    <option value="null">Select your team *</option>
+                    <option>Fibre Planning</option>
+                    <option>Network Support</option>
+                    <option>Wireless Solutions</option>
+                    <option>Home Installation</option>
+                    <option>Field Support</option>
+                    <option>Remote Mentoring</option>
+                </select>
+            </div>
 
-    <div class="form-row">
-        <label for="team">What is your team?</label>
-        <select id="team">
-            <option value="null">Select your team *</option>
-            <option>Fibre Planning</option>
-            <option>Network Support</option>
-            <option>Wireless Solutions</option>
-            <option>Home Installation</option>
-            <option>Field Support</option>
-            <option>Remote Mentoring</option>
-        </select>
-    </div>
+            <div class="centered-field">
+                <label for="email">Email *</label>
+                <input id="email" type="text">
+            </div>
 
-    <div class="centered-field">
-        <label for="email">Email *</label>
-        <input id="email" type="text">
-    </div>
+            <div class="centered-field">
+                <label for="phone">Phone Number *</label>
+                <input id="phone" type="text">
+            </div>
 
-    <div class="centered-field">
-        <label for="phone">Phone Number *</label>
-        <input id="phone" type="text">
-    </div>
+            <div class="centered-field">
+                <label for="fullname">Full Name *</label>
+                <input id="fullname" type="text">
+            </div>
 
-    <div class="centered-field">
-        <label for="fullname">Full Name *</label>
-        <input id="fullname" type="text">
-    </div>
+            <div class="centered-field">
+                <label for="password">Password *</label>
+                <input id="password" type="password">
+            </div>
 
-    <div class="centered-field">
-        <label for="password">Password *</label>
-        <input id="password" type="password">
-    </div>
+            <div class="centered-field">
+                <label for="confirm-password">Re-enter Password *</label>
+                <input id="confirm-password" type="password">
+            </div>
 
-    <div class="centered-field">
-        <label for="confirm-password">Re-enter Password *</label>
-        <input id="confirm-password" type="password">
-    </div>
+            <div class="centered-field">
+                <button type="submit" class="register-btn">Register</button>
+            </div>
 
-    <div class="centered-field">
-        <button type="submit" class="register-btn">Register</button>
-    </div>
-
-    <div class="form-footer text-center mt-4">
-        <p>Already have an account? 
-            <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-black-500">Login</a>
-        </p>
-    </div>
-</form>
-
-
+            <div class="form-footer text-center mt-4">
+                <p>Already have an account?
+                    <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-black-500">Login</a>
+                </p>
+            </div>
+        </form>
     </div>
 
 </body>
+
 </html>
