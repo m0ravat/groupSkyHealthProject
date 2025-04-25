@@ -8,7 +8,7 @@ class SignupForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput)
     captcha = CaptchaField()
     department = forms.ModelChoiceField(queryset=Department.objects.all(), empty_label="Select Your Department")
-    team = forms.ModelChoiceField(queryset=Team.objects.none(), empty_label="Select Your Team")  # Start with no teams
+    team = forms.ModelChoiceField(queryset=Team.objects.none(), empty_label="Select Your Team") 
 
     class Meta:
         model = User
@@ -21,6 +21,19 @@ class SignupForm(forms.ModelForm):
         if password1 != password2:
             raise forms.ValidationError("Passwords do not match.")
         return cleaned_data
+    
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Email is already taken.")
+        return email
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save() 
+        return user
 
 class LoginForm(forms.Form):
     email = forms.EmailField()

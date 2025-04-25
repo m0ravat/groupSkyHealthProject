@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password, check_password
 
 class User(models.Model):
     Role_Choices = [
@@ -15,6 +16,14 @@ class User(models.Model):
     password = models.CharField(max_length=128)
     class Meta:
         db_table = "User"
+    
+    # Method to hash the password when setting it
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
+
+    # Method to check if the password matches the hashed password
+    def check_password(self, raw_password):
+        return check_password(raw_password, self.password)
         
 class Department (models.Model):
     Dept_Choices = []
