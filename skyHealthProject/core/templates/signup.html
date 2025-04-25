@@ -156,80 +156,81 @@
     background-size: cover;
     background-position: center;">
 
-    <form action="" class="bg-white border-white border-2 rounded-3xl text-center p-6 text-2xl"
-    style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: left;">
+<form action="" class="bg-white border-white border-2 rounded-3xl text-center p-6 text-2xl"
+style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: left;">
 
-        <h1 class="sign-up-header text-center">Sign Up!</h1>
+    <h1 class="sign-up-header text-center">Sign Up!</h1>
 
-        <div class="form-row">
-            <label for="role">What is your role?</label>
-            <select id="role">
-                <option value="null">Select your role *</option>
-                <option>Engineer</option>
-                <option>Team Lead</option>
-                <option>Department Lead</option>
-                <option>Senior Manager</option>
-            </select>
-        </div>
+    <div class="form-row">
+        <label for="role">What is your role?</label>
+        <select id="role">
+            <option value="null">Select your role *</option>
+            <option>Engineer</option>
+            <option>Team Lead</option>
+            <option>Department Lead</option>
+            <option>Senior Manager</option>
+        </select>
+    </div>
 
-        <div class="form-row">
-            <label for="department">What is your department?</label>
-            <select id="department">
-                <option value="null">Select your department *</option>
-                <option>Network Engineering</option>
-                <option>Field Engineering</option>
-            </select>
-        </div>
+    <div class="form-row">
+        <label for="department">What is your department?</label>
+        <select id="department">
+            <option value="null">Select your department *</option>
+            <option>Network Engineering</option>
+            <option>Field Engineering</option>
+        </select>
+    </div>
 
-        <div class="form-row">
-            <label for="team">What is your team?</label>
-            <select id="team">
-                <option value="null">Select your team *</option>
-                <option>Fibre Planning</option>
-                <option>Network Support</option>
-                <option>Wireless Solutions</option>
-                <option>Home Installation</option>
-                <option>Field Support</option>
-                <option>Remote Mentoring</option>
-            </select>
-        </div>
+    <div class="form-row">
+        <label for="team">What is your team?</label>
+        <select id="team">
+            <option value="null">Select your team *</option>
+            <option>Fibre Planning</option>
+            <option>Network Support</option>
+            <option>Wireless Solutions</option>
+            <option>Home Installation</option>
+            <option>Field Support</option>
+            <option>Remote Mentoring</option>
+        </select>
+    </div>
 
-        <div class="centered-field">
-            <label for="email">Email *</label>
-            <input id="email" type="text">
-        </div>
+    <div class="centered-field">
+        <label for="email">Email *</label>
+        <input id="email" type="text">
+    </div>
 
-        <div class="centered-field">
-            <label for="phone">Phone Number *</label>
-            <input id="phone" type="text">
-        </div>
+    <div class="centered-field">
+        <label for="phone">Phone Number *</label>
+        <input id="phone" type="text">
+    </div>
 
-        <div class="centered-field">
-            <label for="fullname">Full Name *</label>
-            <input id="fullname" type="text">
-        </div>
+    <div class="centered-field">
+        <label for="fullname">Full Name *</label>
+        <input id="fullname" type="text">
+    </div>
 
-        <div class="centered-field">
-            <label for="password">Password *</label>
-            <input id="password" type="password">
-        </div>
+    <div class="centered-field">
+        <label for="password">Password *</label>
+        <input id="password" type="password">
+    </div>
 
-        <div class="centered-field">
-            <label for="confirm-password">Re-enter Password *</label>
-            <input id="confirm-password" type="password">
-        </div>
+    <div class="centered-field">
+        <label for="confirm-password">Re-enter Password *</label>
+        <input id="confirm-password" type="password">
+    </div>
 
-        <div class="centered-field">
-            <button type="submit" class="register-btn">Register</button>
-        </div>
+    <div class="centered-field">
+        <button type="submit" class="register-btn">Register</button>
+    </div>
 
-        <div class="form-footer text-center mt-4">
-            <p>Already have an account? 
-                <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-black-500">Login</a>
-            </p>
-        </div>
-    </form>
+    <div class="form-footer text-center mt-4">
+        <p>Already have an account? 
+            <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-black-500">Login</a>
+        </p>
+    </div>
+</form>
+
 
     </div>
 
