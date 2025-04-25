@@ -79,6 +79,21 @@
             color: black; 
             transition: all 0.3s ease-in-out;
         }
+
+        @media (max-width: 768px) {
+        .sign-up-header {
+            font-size: 1.5rem;
+        }
+
+        form {
+            padding: 15px;
+            font-size: 14px;
+        }
+
+        .register-btn {
+            font-size: 16px;
+        }
+    }
     </style>
 </head>
 
@@ -94,9 +109,15 @@
         </div>
     </nav>
 
-    <div class="h-[92.5%] w-full flex items-center justify-center p-2 px-10 bg-cover bg-center bg-no-repeat"
-         style="background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');">
-
+    <div class="signup-container" style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');
+    background-size: cover;
+    background-position: center;">
+    
         <form action="" class="bg-white border-white border-2 rounded-3xl text-center p-2 text-2xl"
               style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%)">
             <h1 class="sign-up-header">Sign Up!</h1>
