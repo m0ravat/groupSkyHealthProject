@@ -3,18 +3,23 @@
 <html lang="en">
 
 <head>
+    <!-- Metadata and linking external CSS files -->
     <meta charset="UTF-8" />
     <title>Sign Up</title>
+
+    <!-- Linking Tailwind (or custom) CSS files -->
     <link rel="stylesheet" href="{% static 'input.css' %}">
     <link rel="stylesheet" href="{% static 'output.css' %}">
 
     <style>
+        /* Set body background with a gradient and remove margins */
         body {
             background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
             margin: 0;
             padding: 0;
         }
 
+        /* Image styling for decorative section */
         .image {
             background-image: url('/Images/trello.png');
             background-size: cover;
@@ -23,12 +28,14 @@
             height: 300px;
         }
 
+        /* Sign-up page header styling */
         h1.sign-up-header {
             font-weight: bold;
             font-size: 1.5rem;
             margin-bottom: 20px;
         }
 
+        /* Styling the form container */
         form {
             width: 40%;
             margin-top: 10px;
@@ -36,19 +43,20 @@
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: right;
             font-size: 20px;
             min-height: 500px;
             padding: 20px;
             text-align: left;
         }
 
+        /* Styling for all form labels */
         form label {
             display: block;
             margin-bottom: 8px;
             font-size: 1rem;
         }
 
+        /* Inputs and selects inside the form */
         form input,
         form select {
             width: 100%;
@@ -60,6 +68,7 @@
             line-height: 1.5;
         }
 
+        /* Row styling for form fields */
         .form-row {
             display: flex;
             align-items: center;
@@ -67,12 +76,14 @@
             margin-bottom: 15px;
         }
 
+        /* Label inside form rows */
         .form-row label {
             width: 35%;
             font-size: 1rem;
             margin: 0;
         }
 
+        /* Inputs and selects inside form rows */
         .form-row input,
         .form-row select {
             width: 60%;
@@ -83,12 +94,14 @@
             height: 30px;
         }
 
+        /* Footer styling for form */
         .form-footer {
             margin-top: 10px;
             text-align: center;
             font-size: 1rem;
         }
 
+        /* Captcha image styling */
         .captcha-row img {
             max-width: 120px;
             height: auto;
@@ -96,11 +109,13 @@
             margin-bottom: 10px;
         }
 
+        /* Centering fields inside form */
         .centered-field {
             text-align: center;
             margin-bottom: 8px;
         }
 
+        /* Styling the input inside centered field */
         .centered-field input {
             width: 80%;
             padding: 2px 5px;
@@ -109,6 +124,7 @@
             font-size: 0.875rem;
         }
 
+        /* Register button styling */
         .register-btn {
             padding: 5px 30px;
             margin-top: 10px;
@@ -120,11 +136,13 @@
             font-size: 16px;
         }
 
+        /* Register button hover effect */
         .register-btn:hover {
             background-color: transparent;
             color: black;
         }
 
+        /* Responsive form and button styles for smaller screens */
         @media (max-width: 768px) {
             form {
                 width: 80%;
@@ -140,17 +158,24 @@
 </head>
 
 <body>
+    <!-- Navigation bar at top -->
     <nav class="bg-white border-2 border-b-gray-500 border-t-gray-500 p-2 flex items-center justify-between">
+        <!-- Logo image -->
         <img src="{% static 'Images/_Logo.png' %}" alt="Sky Logo" class="w-14">
+        
+        <!-- Tagline text -->
         <p class="text-lg">
             Believe in Better - A better and healthier future at Sky UK for customers, employees, and everyone.
         </p>
+
+        <!-- Login/Signup links with active page highlighting -->
         <div class="flex gap-4 text-lg">
             <a href="{% url 'login' %}" class="{% if request.path == '/login/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">Login</a>
             <a href="{% url 'signup' %}" class="{% if request.path == '/signup/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">Signup</a>
         </div>
     </nav>
 
+    <!-- Main container with background image -->
     <div style="
         display: flex;
         justify-content: center;
@@ -160,72 +185,75 @@
         background-size: cover;
         background-position: center;">
 
+        <!-- Signup Form -->
         <form method="POST" class="bg-white border-white border-2 rounded-3xl text-center p-6 text-2xl"
             style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: left; min-height: 500px;">
-            {% csrf_token %}
+            {% csrf_token %} <!-- Django's security token to prevent CSRF attacks -->
 
+            <!-- Form title -->
             <h1 class="sign-up-header text-center">Sign Up!</h1>
 
-            <!-- Role Field -->
+            <!-- Role field -->
             <div class="form-row">
                 <label for="id_role">What is your role?</label>
                 {{ form.role }}
             </div>
 
-            <!-- Department Field -->
+            <!-- Department field -->
             <div class="form-row">
                 <label for="id_department">What is your department?</label>
                 {{ form.department }}
             </div>
 
-            <!-- Team Field -->
+            <!-- Team field -->
             <div class="form-row">
                 <label for="id_team">What is your team?</label>
                 {{ form.team }}
             </div>
 
-            <!-- Email Field -->
+            <!-- Email field -->
             <div class="form-row">
                 <label for="id_email">Email:</label>
                 {{ form.email }}
             </div>
 
-            <!-- First Name Field -->
+            <!-- First Name field -->
             <div class="form-row">
                 <label for="id_firstName">First Name:</label>
                 {{ form.firstName }}
             </div>
 
-            <!-- Surname Field -->
+            <!-- Surname (Last Name) field -->
             <div class="form-row">
                 <label for="id_lastName">Surname:</label>
                 {{ form.lastName }}
             </div>
 
-
-            <!-- Password Fields -->
+            <!-- Password field -->
             <div class="form-row">
                 <label for="id_password1">Password:</label>
                 {{ form.password1 }}
             </div>
-            
+
+            <!-- Confirm Password field -->
             <div class="form-row">
                 <label for="id_password2">Re-enter Password:</label>
                 {{ form.password2 }}
             </div>
 
-            <!-- Captcha Field -->
+            <!-- Captcha field -->
             <div class="form-row captcha-row">
                 <label for="id_captcha">Captcha:</label>
                 {{ form.captcha }}
             </div>
 
-            <!-- Submit Button -->
+            <!-- Submit button to register -->
             <div class="centered-field">
                 <button type="submit" class="register-btn">Register</button>
             </div>
 
+            <!-- Footer link for users who already have an account -->
             <div class="form-footer text-center mt-4">
                 <p>Already have an account?
                     <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-black-500">Login</a>
