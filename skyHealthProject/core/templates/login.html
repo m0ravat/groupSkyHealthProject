@@ -71,6 +71,7 @@
             margin-bottom: 10px;
         }
         
+
         /* Inline Layout for Email and Password Fields */
         .inline-form-input {
             display: flex;
@@ -146,6 +147,17 @@
                 padding: 8px 20px;
             }
             .bottom-text { font-size: 14px; }
+            
+            /* Captcha Image Responsiveness */
+            .captcha-row img {
+                max-width: 120px; /* Ensure image is not too large on mobile */
+                width: 100%; /* Full width on mobile */
+            }
+
+            /* Captcha Input Responsiveness */
+            .captcha-row input {
+                width: 90%; /* Wider input box on mobile */
+            }
         }
     </style>
 </head>
@@ -212,10 +224,10 @@
             </div>
 
             <!-- Captcha Input Box -->
-        <div class="form-row captcha-row">
-            <label for="id_captcha" class="form-label" style="font-size: 20px; margin-left: 51px;">Captcha:</label>
-            {{ form.captcha|add_class:"captcha-input" }}
-        </div>
+            <div class="form-row captcha-row">
+                <label for="id_captcha" class="form-label" style="font-size: 20px; margin-left: 51px;">Captcha:</label>
+                {{ form.captcha|add_class:"captcha-input" }}
+            </div>
 
             <!-- Submit Button -->
             <button type="submit" class="login-btn mt-7 text-3xl border-2 mb-6 border-black bg-white p-2 w-2/6 rounded-md">
