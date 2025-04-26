@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +23,12 @@
             height: 300px;
         }
 
+        h1.sign-up-header {
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
         form {
             width: 40%;
             margin-top: 10px;
@@ -34,52 +39,61 @@
             text-align: right;
             font-size: 20px;
             min-height: 500px;
+            padding: 20px;
+            text-align: left;
         }
 
         form label {
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 8px;
             font-size: 1rem;
         }
 
         form input,
         form select {
             width: 100%;
-            padding: 4px 8px;
-            margin-bottom: 8px;
+            padding: 4px 6px;
+            margin-bottom: 3px;
             border: 1px solid #000000;
             border-radius: 5px;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         .form-row {
             display: flex;
             align-items: center;
-            margin-bottom: 3px;
+            justify-content: space-between;
+            margin-bottom: 15px;
         }
-
-        .form-row.captcha-row img {
-            padding-right: 10px;  
-            display: flex;
-            align-items: center;
-            margin-bottom: 3px;
-        }
-
 
         .form-row label {
-            width: 40%;
-            margin-right: 10px;
+            width: 35%;
+            font-size: 1rem;
+            margin: 0;
         }
 
         .form-row input,
         .form-row select {
-            flex: 1;
+            width: 60%;
+            padding: 4px 8px;
+            font-size: 0.875rem;
+            border: 1px solid #000;
+            border-radius: 5px;
+            height: 30px;
         }
 
         .form-footer {
             margin-top: 10px;
             text-align: center;
             font-size: 1rem;
+        }
+
+        .captcha-row img {
+            max-width: 120px;
+            height: auto;
+            margin-right: 10px;
+            margin-bottom: 10px;
         }
 
         .centered-field {
@@ -95,16 +109,9 @@
             font-size: 0.875rem;
         }
 
-        .sign-up-header {
-            font-size: 1.5rem;
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
         .register-btn {
-            padding: 5px 20px;
-            margin-top: 5px;
+            padding: 5px 30px;
+            margin-top: 10px;
             border: 2px solid #000000;
             border-radius: 50px;
             background-color: #f8f8f8;
@@ -112,6 +119,7 @@
             transition: all 0.3s ease-in-out;
             font-size: 16px;
         }
+
         .register-btn:hover {
             background-color: transparent;
             color: black;
@@ -119,12 +127,13 @@
 
         @media (max-width: 768px) {
             form {
+                width: 80%;
                 padding: 15px;
                 font-size: 14px;
             }
 
             .register-btn {
-                font-size: 16px;
+                font-size: 14px;
             }
         }
     </style>
@@ -134,7 +143,7 @@
     <nav class="bg-white border-2 border-b-gray-500 border-t-gray-500 p-2 flex items-center justify-between">
         <img src="{% static 'Images/_Logo.png' %}" alt="Sky Logo" class="w-14">
         <p class="text-lg">
-            Believe in Better - A better and healthier future at Sky UK for customers, employees and everyone.
+            Believe in Better - A better and healthier future at Sky UK for customers, employees, and everyone.
         </p>
         <div class="flex gap-4 text-lg">
             <a href="{% url 'login' %}" class="{% if request.path == '/login/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">Login</a>
@@ -151,89 +160,80 @@
         background-size: cover;
         background-position: center;">
 
-<form action="" method="POST" class="bg-white border-white border-2 rounded-3xl text-center p-6 text-2xl"
-style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%); 
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: left; min-height: 500px;">
-{% csrf_token %}
+        <form method="POST" class="bg-white border-white border-2 rounded-3xl text-center p-6 text-2xl"
+            style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: left; min-height: 500px;">
+            {% csrf_token %}
 
-<h1 class="sign-up-header text-center">Sign Up!</h1>
+            <h1 class="sign-up-header text-center">Sign Up!</h1>
 
-<div class="form-row">
-  <label for="role">What is your role?</label>
-  <select id="role" name="role">
-      <option value="null">Select your role *</option>
-      <option>Engineer</option>
-      <option>Team Lead</option>
-      <option>Department Lead</option>
-      <option>Senior Manager</option>
-  </select>
-</div>
+            <!-- Role Field -->
+            <div class="form-row">
+                <label for="id_role">What is your role?</label>
+                {{ form.role }}
+            </div>
 
-<div class="form-row">
-  <label for="department">What is your department?</label>
-  <select id="department" name="department">
-      <option value="null">Select your department *</option>
-      <option>Network Engineering</option>
-      <option>Field Engineering</option>
-  </select>
-</div>
+            <!-- Department Field -->
+            <div class="form-row">
+                <label for="id_department">What is your department?</label>
+                {{ form.department }}
+            </div>
 
-<div class="form-row">
-  <label for="team">What is your team?</label>
-  <select id="team" name="team">
-      <option value="null">Select your team *</option>
-      <option>Fibre Planning</option>
-      <option>Network Support</option>
-      <option>Wireless Solutions</option>
-      <option>Home Installation</option>
-      <option>Field Support</option>
-      <option>Remote Mentoring</option>
-  </select>
-</div>
+            <!-- Team Field -->
+            <div class="form-row">
+                <label for="id_team">What is your team?</label>
+                {{ form.team }}
+            </div>
 
-<div class="form-row">
-  <label for="email">Email *</label>
-  <input id="email" type="email" name="email" required>
-</div>
+            <!-- Email Field -->
+            <div class="form-row">
+                <label for="id_email">Email:</label>
+                {{ form.email }}
+            </div>
 
-<div class="form-row">
-  <label for="phone">Phone Number *</label>
-  <input id="phone" type="tel" name="phone" required>
-</div>
+            <!-- First Name Field -->
+            <div class="form-row">
+                <label for="id_firstName">First Name:</label>
+                {{ form.firstName }}
+            </div>
 
-<div class="form-row">
-  <label for="fullname">Full Name *</label>
-  <input id="fullname" type="text" name="fullname" required>
-</div>
+            <!-- Surname Field -->
+            <div class="form-row">
+                <label for="id_lastName">Surname:</label>
+                {{ form.lastName }}
+            </div>
 
-<div class="form-row">
-  <label for="password">Password *</label>
-  <input id="password" type="password" name="password" required>
-</div>
 
-<div class="form-row">
-  <label for="confirm-password">Re-enter Password *</label>
-  <input id="confirm-password" type="password" name="confirm-password" required>
-</div>
+            <!-- Password Fields -->
+            <div class="form-row">
+                <label for="id_password1">Password:</label>
+                {{ form.password1 }}
+            </div>
+            
+            <div class="form-row">
+                <label for="id_password2">Re-enter Password:</label>
+                {{ form.password2 }}
+            </div>
 
-<div class="form-row captcha-row">
-  <label for="captcha">Enter the characters shown *</label>
-  {{ form.captcha }}
-</div>
+            <!-- Captcha Field -->
+            <div class="form-row captcha-row">
+                <label for="id_captcha">Captcha:</label>
+                {{ form.captcha }}
+            </div>
 
-<div class="centered-field">
-  <button type="submit" class="register-btn">Register</button>
-</div>
+            <!-- Submit Button -->
+            <div class="centered-field">
+                <button type="submit" class="register-btn">Register</button>
+            </div>
 
-<div class="form-footer text-center mt-4">
-  <p>Already have an account?
-      <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-black-500">Login</a>
-  </p>
-</div>
-</form>
+            <div class="form-footer text-center mt-4">
+                <p>Already have an account?
+                    <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-black-500">Login</a>
+                </p>
+            </div>
+        </form>
 
     </div>
-
 </body>
 
 </html>
