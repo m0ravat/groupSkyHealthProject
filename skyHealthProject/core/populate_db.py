@@ -1,4 +1,4 @@
-#The code below was done by Iqra Shah (w1973224)
+# This file was coded by Iqra Shah w1973224
 from core.models import User, Department, Team
 from quiz.models import SessionAssignment, Session, Vote, Card
 
@@ -68,25 +68,8 @@ assignments = [
 ]
 
 for a in assignments:
-    SessionAssignment.objects.get_or_create(assignId=a[0], username=User.objects.get(username=a[1]), sessionId=Session.objects.get(sessionId=a[2]), additionalComments=a[3])
-
-# ------ Cards ------ #
-cards = [
-    ("C1", "Support", "Do you feel that you receive support when needed and know exactly who to approach for help?"),
-    ("C2", "Teamwork", "Do you feel like your team works together smoothly, with good communication, towards a common goal?"),
-    ("C3", "Mission", "Do you understand and believe in your squad's purpose?"),
-    ("C4", "Delivering Value", "Think about the quality of your output and how stakeholders react to it. Is the team delivering meaningful value that you're excited about? Or is it frustrating, rushed, or poorly received?"),
-    ("C5", "Easy to Release", "How smooth is your release process?"),
-    ("C6", "Fun", "How enjoyable is it to work in your squad?"),
-    ("C7", "Health of Codebase", "Is the code clean, testable, and a pleasure to work with? Or is it full of quick fixes, bugs, and technical debt that slows everyone down?"),
-    ("C8", "Speed", "Do you have momentum and flow, or are you constantly blocked by issues and waiting on others?"),
-    ("C9", "Pawns or Players", "Do you feel empowered to shape decisions, propose ideas, and own the work? Or do you just follow orders without any say in the process?"),
-    ("C10", "Learning", "Are you growing and learning new things?"),
-    ("C11", "Suitable Process", "Do you feel like the current way of working suits your needs and allows you to be productive without unnecessary obstacles?"),
-]
-
-for c in cards:
-    Card.objects.get_or_create(cardId=c[0], cardName=c[1], cardDesc=c[2])
+    session = Session.objects.get(sessionId=a[2])  # Fetch the Session instance based on sessionId
+    SessionAssignment.objects.get_or_create(assignId=a[0], username=User.objects.get(username=a[1]), sessionId=session, additionalComments=a[3])
 
 # ------ Votes ------ #
 votes = [
@@ -115,4 +98,6 @@ votes = [
 ]
 
 for v in votes:
-    Vote.objects.get_or_create(voteId=v[0], rating=v[1], progress=v[2], cardId=Card.objects.get(cardId=v[3]), sessionId=Session.objects.get(sessionId=v[4]), username=User.objects.get(username=v[5]), assignId=SessionAssignment.objects.get(assignId=v[6]))
+    session = Session.objects.get(sessionId=v[4])  # Fetch the Session instance based on sessionId
+    assign = SessionAssignment.objects.get(assignId=v[6])  # Fetch the SessionAssignment instance based on assignId
+    Vote.objects.get_or_create(voteId=v[0], rating=v[1], progress=v[2], cardId=Card.objects.get(cardId=v[3]), sessionId=session, username=User.objects.get(username=v[5]), assignId=assign)

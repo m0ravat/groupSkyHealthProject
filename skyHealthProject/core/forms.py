@@ -1,4 +1,4 @@
-
+#This file was coded by Iqra Shah (w1973224)
 from django import forms
 from .models import User, Department, Team
 from captcha.fields import CaptchaField
@@ -8,7 +8,13 @@ class SignupForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput)
     captcha = CaptchaField()
     department = forms.ModelChoiceField(queryset=Department.objects.all(), empty_label="Select Your Department")
-    team = forms.ModelChoiceField(queryset=Team.objects.none(), empty_label="Select Your Team") 
+    team = forms.ModelChoiceField(queryset=Team.objects.all(), empty_label="Select Your Team")
+
+    # Adding an empty value manually to the role choices list
+    role = forms.ChoiceField(
+        choices=[("", "Select Your Role")] + User.Role_Choices,  # Add empty option here
+        required=True
+    )
 
     class Meta:
         model = User
