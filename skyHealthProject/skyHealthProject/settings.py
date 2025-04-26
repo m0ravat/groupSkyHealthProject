@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'quiz',
     'core',
     'captcha',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

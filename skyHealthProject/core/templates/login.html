@@ -1,18 +1,30 @@
 {% load static %}
+{% load widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta + Title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'input.css' %}">
-    <link rel="stylesheet" href="{% static 'output.css' %}">
     <title>Login Page</title>
 
+    <!-- Tailwind CSS Files -->
+    <link rel="stylesheet" href="{% static 'input.css' %}">
+    <link rel="stylesheet" href="{% static 'output.css' %}">
+
+    <!-- Styling -->
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        /* General Button Styling */
         .login-btn {
             padding: 8px 30px;
             margin-top: 20px;
+            margin-bottom: 10px;
             border: 2px solid #000000;
             border-radius: 50px;
             background-color: #f8f8f8;
@@ -24,52 +36,49 @@
 
         .login-btn:hover {
             background-color: transparent;
-            color: black; 
-            transition: all 0.3s ease-in-out;
+            color: black;
         }
 
-        .form-input {
-            margin-bottom: 15px;
-        }
-
+        /* Form Layout Utilities */
+        .form-input { margin-bottom: 15px; }
         .form-label {
             margin-bottom: 10px;
             font-size: 18px;
             margin-left: 55px;
         }
+        .form-container { padding: 0; margin-top: 0; }
 
-        .form-container {
-            padding: 40px;
-            margin-top: 40px;
-        }
-
+        /* Forgot Password Link */
         .forgot-password {
             margin-top: 10px;
             margin-left: 55px;
             font-size: 16px;
         }
 
+        /* Signup Text Styling */
         .bottom-text {
-            margin-top: 15px;
+            margin-top: 5px;
+            margin-bottom: 5px;
             font-size: 16px;
         }
 
+        /* Captcha Image Sizing */
+        .form-row.captcha-row img {
+            width: 150px;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Styles */
         @media (max-width: 1024px) {
             .login-form-container {
                 width: 80% !important;
                 height: auto !important;
                 padding: 30px 20px !important;
             }
-
-            .form-label,
-            .forgot-password {
-                margin-left: 25px;
-            }
-
-            .login-btn {
-                width: 50% !important;
-                font-size: 18px;
-            }
+            .form-label, .forgot-password { margin-left: 25px; }
+            .login-btn { width: 50% !important; font-size: 18px; }
         }
 
         @media (max-width: 640px) {
@@ -77,81 +86,98 @@
                 font-size: 14px;
                 text-align: center;
             }
-
-            .form-label,
-            .forgot-password {
+            .form-label, .forgot-password {
                 margin-left: 15px;
                 font-size: 14px;
             }
-
             .login-btn {
                 font-size: 16px;
                 padding: 8px 20px;
             }
-
-            .bottom-text {
-                font-size: 14px;
-            }
+            .bottom-text { font-size: 14px; }
         }
     </style>
 </head>
 
 <body class="overflow-hidden h-screen bg-slate-50">
+    <!-- Navbar -->
     <nav class="border-2 border-b-gray-500 border-t-gray-500 p-2 flex items-center justify-between">
+        <!-- Logo -->
         <img src="{% static 'Images/_Logo.png' %}" alt="Sky Logo" class="w-14">
+
+        <!-- Tagline -->
         <p class="text-lg">
             Believe in Better - A better and healthier future at Sky UK for customers, employees, and everyone.
         </p>
+
+        <!-- Nav Links -->
         <div class="flex gap-4 text-lg">
-            <a href="{% url 'login' %}" class="{% if request.path == '/login/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">Login</a>
-            <a href="{% url 'signup' %}" class="{% if request.path == '/signup/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">Signup</a>
+            <a href="{% url 'login' %}" class="{% if request.path == '/login/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">
+                Login
+            </a>
+            <a href="{% url 'signup' %}" class="{% if request.path == '/signup/' %}border-b-2 border-b-gray-700{% else %}hover:border-b-2 hover:border-b-gray-500{% endif %}">
+                Signup
+            </a>
         </div>
     </nav>
 
-    <div 
-        class="h-[92.5%] w-full flex items-center justify-center p-2 px-10 bg-cover bg-center bg-no-repeat" 
-        style="background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');">
-        <form 
-            method="POST"
-            action=""
-            class="login-form-container h-[70%] w-3/6 right-0 border-white border-2 rounded-3xl text-center p-2 text-2xl form-container"
-            style="
-                background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
-                box-shadow: 
-                    0 10px 30px rgba(245, 100, 0, 0.6),
-                    0 10px 30px rgba(255, 0, 0, 0.6),
-                    0 40px 50px rgba(181, 0, 125, 0.6),
-                    0 50px 60px rgba(33, 66, 156, 0.6),
-                    0 60px 70px rgba(0, 113, 255, 0.6);">
+    <!-- Main Content Area with Background -->
+    <div class="h-full w-full flex items-center justify-center p-2 px-10 bg-cover bg-center bg-no-repeat" style="background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');">
+
+        <!-- Login Form -->
+        <form method="POST" action="" class="login-form-container h-[70%] w-3/6 right-0 border-white border-2 rounded-3xl text-center p-2 text-2xl form-container"
+              style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
+                     box-shadow: 0 10px 30px rgba(245, 100, 0, 0.6),
+                                 0 10px 30px rgba(255, 0, 0, 0.6),
+                                 0 40px 50px rgba(181, 0, 125, 0.6),
+                                 0 50px 60px rgba(33, 66, 156, 0.6),
+                                 0 60px 70px rgba(0, 113, 255, 0.6);">
+
             {% csrf_token %}
-            
+
+            <!-- Title -->
             <h1 class="mb-6 mt-4 font-bold" style="font-size: 1.5rem;">Login Form</h1>
 
+            <!-- Error Messages -->
+            {% if form.errors %}
+            <div class="text-red-600 text-center mb-4">
+                Please correct the errors below.
+            </div>
+            {% endif %}
+
+            <!-- Email Field -->
             <div class="form-input">
-                <label for="id_email" class="form-label block text-left ml-24">
-                    Email: 
-                </label>
-                <input type="email" name="email" id="id_email" class="border-2 w-5/6 p-2 border-black rounded-lg">
+                <label for="{{ form.email.id_for_label }}" class="form-label block text-left ml-24">Email:</label>
+                {{ form.email|add_class:"border-2 w-5/6 p-2 border-black rounded-lg" }}
             </div>
 
+            <!-- Password Field -->
             <div class="form-input">
-                <label for="id_password" class="form-label block mt-4 text-left ml-24">
-                    Password: 
-                </label>
-                <input type="password" name="password" id="id_password" class="border-2 w-5/6 p-2 border-black rounded-lg">
+                <label for="{{ form.password.id_for_label }}" class="form-label block text-left ml-24">Password:</label>
+                {{ form.password|add_class:"border-2 w-5/6 p-2 border-black rounded-lg" }}
             </div>
 
+            <!-- Captcha -->
+            <div class="form-row captcha-row">
+                <label for="{{ form.captcha.id_for_label }}" class="form-label block text-left ml-24">Captcha:</label>
+                <div class="flex flex-col items-center">
+                    {{ form.captcha }}
+                </div>
+            </div>
+
+            <!-- Forgotten Password Link -->
             <p class="forgot-password text-left ml-24">
-                Forgotten Password? <a href="" class="border-b-black border-b-2">Click here</a>
+                Forgotten Password? <a href="#" class="border-b-black border-b-2">Click here</a>
             </p>
 
-            <button 
-                type="submit" 
-                class="login-btn mt-7 text-3xl border-2 mb-6 border-black bg-white p-2 w-2/6 rounded-md">
+            <!-- Submit Button -->
+            <button type="submit" class="login-btn mt-7 text-3xl border-2 mb-6 border-black bg-white p-2 w-2/6 rounded-md">
                 Login
             </button>
 
-            <p class="bottom-text"> Don't have an account? 
+            <!-- Signup Redirect -->
+            <p class="bottom-text">
+                Don't have an account?
                 <a href="{% url 'signup' %}" class="hover:border-b-2 hover:border-b-black-500">Sign up</a>
             </p>
         </form>
