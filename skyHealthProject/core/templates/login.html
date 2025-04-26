@@ -55,13 +55,12 @@
             margin-left: 55px;
             font-size: 16px;
         } */
-
     
         /* Signup Text Styling */
         .bottom-text {
             margin-top: 5px;
             margin-bottom: 15px;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         /* Captcha Image Sizing */
@@ -72,7 +71,6 @@
             margin-bottom: 10px;
         }
         
-
         /* Inline Layout for Email and Password Fields */
         .inline-form-input {
             display: flex;
@@ -107,6 +105,20 @@
             margin-bottom: 15px;
             margin-top: 10px;
             margin-right: 50px;
+        }
+        /* Style for the captcha input */
+        .captcha-row input {
+            border: 2px solid black; /* Border color */
+            border-radius: 8px; /* Rounded corners */
+            padding: 8px; /* Padding inside the input */
+            width: 50%; /* Adjust width as needed */
+        }
+
+        /* Preventing outline issues on focus */
+        .captcha-row input:focus {
+            outline: none; /* Removes the default outline on focus */
+            border-color: #0071ff; /* Optional: Change border color on focus */
+            box-shadow: 0 0 5px rgba(0, 113, 255, 0.6); /* Optional: Add a subtle glow on focus */
         }
 
         /* Responsive Styles */
@@ -199,12 +211,11 @@
                 {{ form.password|add_class:"border-2 w-full p-2 border-black rounded-lg" }}
             </div>
 
-            <!-- Captcha  -->
-            <div class="form-row captcha-row">
-                <label for="id_captcha" style="font-size: 20px;
-                margin-left: 51px;">Captcha:</label>
-                {{ form.captcha }}
-            </div>
+            <!-- Captcha Input Box -->
+        <div class="form-row captcha-row">
+            <label for="id_captcha" class="form-label" style="font-size: 20px; margin-left: 51px;">Captcha:</label>
+            {{ form.captcha|add_class:"captcha-input" }}
+        </div>
 
             <!-- Submit Button -->
             <button type="submit" class="login-btn mt-7 text-3xl border-2 mb-6 border-black bg-white p-2 w-2/6 rounded-md">
