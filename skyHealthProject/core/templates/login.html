@@ -22,12 +22,12 @@
 
         /* General Button Styling */
         .login-btn {
-            padding: 8px 30px;
-            margin-top: 20px;
+            padding: 5px 30px;
+            margin-top: 35px;
             margin-bottom: 10px;
             border: 2px solid #000000;
             border-radius: 50px;
-            background-color: #f8f8f8;
+            background-color: hsl(0, 0%, 100%);
             cursor: pointer;
             transition: all 0.3s ease-in-out;
             color: black;
@@ -43,22 +43,24 @@
         .form-input { margin-bottom: 15px; }
         .form-label {
             margin-bottom: 10px;
-            font-size: 18px;
+            font-size: 20px;
             margin-left: 55px;
         }
         .form-container { padding: 0; margin-top: 0; }
 
-        /* Forgot Password Link */
+        /* Forgot Password Link
         .forgot-password {
+            text-align: center;
             margin-top: 10px;
             margin-left: 55px;
             font-size: 16px;
-        }
+        } */
 
+    
         /* Signup Text Styling */
         .bottom-text {
             margin-top: 5px;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
             font-size: 16px;
         }
 
@@ -68,6 +70,25 @@
             height: 50px;
             object-fit: contain;
             margin-bottom: 10px;
+        }
+        
+
+        /* Inline Layout for Email and Password Fields */
+        .inline-form-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .inline-form-input label {
+            width: 25%; 
+            margin-right: 20px; 
+            text-align: left;
+        }
+
+        .inline-form-input input {
+            width: 60%;
+            margin-right: 20px;
         }
 
         /* Responsive Styles */
@@ -137,8 +158,9 @@
 
             <!-- Title -->
             <h1 class="mb-6 mt-4 font-bold" 
-            style="font-size: 1.5rem;
-            margin-bottom: 10px;">Login Form</h1>
+            style="font-size: 2rem;
+            margin-bottom: 40px;
+            margin-top: 40px;">Login!</h1>
 
             <!-- Error Messages -->
             {% if form.errors %}
@@ -147,16 +169,16 @@
             </div>
             {% endif %}
 
-            <!-- Email Field -->
-            <div class="form-input">
-                <label for="{{ form.email.id_for_label }}" class="form-label block text-left ml-24">Email:</label>
-                {{ form.email|add_class:"border-2 w-5/6 p-2 border-black rounded-lg" }}
+            <!-- Email Field Inline -->
+            <div class="inline-form-input">
+                <label for="{{ form.email.id_for_label }}" class="form-label">Email:</label>
+                {{ form.email|add_class:"border-2 w-full p-2 border-black rounded-lg" }}
             </div>
 
-            <!-- Password Field -->
-            <div class="form-input">
-                <label for="{{ form.password.id_for_label }}" class="form-label block text-left ml-24">Password:</label>
-                {{ form.password|add_class:"border-2 w-5/6 p-2 border-black rounded-lg" }}
+            <!-- Password Field Inline -->
+            <div class="inline-form-input">
+                <label for="{{ form.password.id_for_label }}" class="form-label">Password:</label>
+                {{ form.password|add_class:"border-2 w-full p-2 border-black rounded-lg" }}
             </div>
 
             <!-- Captcha -->
@@ -167,15 +189,15 @@
                 </div>
             </div>
 
-            <!-- Forgotten Password Link -->
-            <p class="forgot-password text-left ml-24">
-                Forgotten Password? <a href="#" class="border-b-black border-b-2">Click here</a>
-            </p>
-
             <!-- Submit Button -->
             <button type="submit" class="login-btn mt-7 text-3xl border-2 mb-6 border-black bg-white p-2 w-2/6 rounded-md">
                 Login
             </button>
+
+            <!-- Forgotten Password Link 
+            <p class="forgot-password text-left ml-24">
+                Forgotten Password? <a href="#" class="border-b-black border-b-2">Click here</a>
+            </p> -->
 
             <!-- Signup Redirect -->
             <p class="bottom-text">
