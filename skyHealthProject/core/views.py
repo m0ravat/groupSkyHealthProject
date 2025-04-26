@@ -16,13 +16,13 @@ def signup_view(request):
             
             # Redirect based on user role
             if user.role == 'seniorManager':
-                return redirect('seniorDashboard')
+                return redirect('senior_dashboard')
             elif user.role == 'teamLead':
-                return redirect('teamLead_dashboard')
+                return redirect('team_lead_dashboard')
             elif user.role == 'departmentLead':
-                return redirect('dLeadDashboard')
+                return redirect('d_lead_dashboard')
             else:
-                return redirect('engineerDashboard')  # Default to engineer dashboard
+                return redirect('engineer_dashboard')
     else:
         form = SignupForm()
     return render(request, "signup.html", {"form": form})
