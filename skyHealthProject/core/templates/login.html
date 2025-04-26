@@ -91,6 +91,24 @@
             margin-right: 20px;
         }
 
+        /* Captcha image styling */
+        .captcha-row img {
+            max-width: 120px;
+            height: auto;
+            margin-right: 0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        /* Row styling for form fields */
+        .form-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            margin-top: 10px;
+            margin-right: 50px;
+        }
+
         /* Responsive Styles */
         @media (max-width: 1024px) {
             .login-form-container {
@@ -181,12 +199,11 @@
                 {{ form.password|add_class:"border-2 w-full p-2 border-black rounded-lg" }}
             </div>
 
-            <!-- Captcha -->
+            <!-- Captcha  -->
             <div class="form-row captcha-row">
-                <label for="{{ form.captcha.id_for_label }}" class="form-label block text-left ml-24">Captcha:</label>
-                <div class="flex flex-col items-center">
-                    {{ form.captcha }}
-                </div>
+                <label for="id_captcha" style="font-size: 20px;
+                margin-left: 51px;">Captcha:</label>
+                {{ form.captcha }}
             </div>
 
             <!-- Submit Button -->
