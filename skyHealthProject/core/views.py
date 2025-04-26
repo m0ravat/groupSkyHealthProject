@@ -11,9 +11,18 @@ def signup_view(request):
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
-            # Save user after validating form
-            user = form.save()    
-            return redirect("login")  # Redirect after successful signup
+            user = form.save()  # Save the user after form is validated
+            login(request, user)  # Automatically log the user in after signup
+            
+            # Redirect based on user role
+            if user.role == 'seniorManager':
+                return redirect('seniorDashboard')
+            elif user.role == 'teamLead':
+                return redirect('teamLead_dashboard')
+            elif user.role == 'departmentLead':
+                return redirect('dLeadDashboard')
+            else:
+                return redirect('engineerDashboard')  # Default to engineer dashboard
     else:
         form = SignupForm()
     return render(request, "signup.html", {"form": form})
