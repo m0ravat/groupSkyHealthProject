@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import SignupForm, LoginForm
 from .models import Department, Team
+from django.shortcuts import render
 
 def home_view(request):
     return render(request, 'homePage.html')
@@ -63,3 +64,7 @@ def senior_dashboard_view(request):
 
 def team_lead_dashboard_view(request):
     return render(request, "teamLead_dashboard.html")
+
+# Views for Hamza's profile page
+def profile_view(request):
+    return render(request, 'profile.html')

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core import views
+from core import views 
 
 #Lines 24-32 were done by Iqra Shah (w1973224)
 urlpatterns = [
@@ -30,4 +30,5 @@ urlpatterns = [
     path("engineer/", views.engineer_dashboard_view, name="engineer_dashboard"),
     path("senior/", views.senior_dashboard_view, name="senior_dashboard"),
     path("team-lead/", views.team_lead_dashboard_view, name="team_lead_dashboard"),
+    path('profile/', views.profile_view, name='profile'),
 ]
