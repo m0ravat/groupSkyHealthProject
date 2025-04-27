@@ -1,4 +1,6 @@
 {% load static %}
+{% load widget_tweaks %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +14,10 @@
     <link rel="stylesheet" href="{% static 'output.css' %}">
     <link rel="stylesheet" href="{% static 'nav.css' %}">    
     <link rel="stylesheet" href="{% static 'core/signup.css' %}">    
-
 </head>
 
 <body>
-    
     {% include 'coreNav.html' %}
-
 
     <!-- Main container with background image -->
     <div style="
@@ -110,3 +109,4 @@
 </body>
 
 </html>
+
