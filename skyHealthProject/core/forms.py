@@ -10,9 +10,8 @@ class SignupForm(forms.ModelForm):
     department = forms.ModelChoiceField(queryset=Department.objects.all(), empty_label="Select Your Department")
     team = forms.ModelChoiceField(queryset=Team.objects.all(), empty_label="Select Your Team")
 
-    # Adding an empty value manually to the role choices list
     role = forms.ChoiceField(
-        choices=[("", "Select Your Role")] + User.Role_Choices,  # Add empty option here
+        choices=[("", "Select Your Role")] + User.Role_Choices,
         required=True
     )
 
@@ -45,3 +44,25 @@ class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
     captcha = CaptchaField()
+
+ # Forms made by Iqra for Hamza's profile page
+class ProfileForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput, required=False)
+
+    class Meta:
+        model = User
+        fields = ['firstName', 'lastName', 'email', 'role', 'password']
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if User.objects.filter(email=email).exclude(username=self.instance.username).exists():
+            raise forms.ValidationError("Email is already taken.")
+        return email
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if self.cleaned_data.get("password"):
+            user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
