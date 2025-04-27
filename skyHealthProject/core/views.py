@@ -66,21 +66,3 @@ def senior_dashboard_view(request):
 def team_lead_dashboard_view(request):
     return render(request, "teamLead_dashboard.html")
 
-# Views for Hamza's profile page
-
-# @login_required
-#def profile_view(request):
-    #user = request.user 
-
-def profile_view(request):
-    return render(request, 'profile.html') 
-    
-    if request.method == "POST":
-        form = ProfileForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = ProfileForm(instance=user)
-
-    return render(request, 'profile.html', {'form': form})

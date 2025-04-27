@@ -44,25 +44,3 @@ class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
     captcha = CaptchaField()
-
- # Forms made by Iqra for Hamza's profile page
-class ProfileForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput, required=False)
-
-    class Meta:
-        model = User
-        fields = ['firstName', 'lastName', 'email', 'role', 'password']
-
-    def clean_email(self):
-        email = self.cleaned_data.get("email")
-        if User.objects.filter(email=email).exclude(username=self.instance.username).exists():
-            raise forms.ValidationError("Email is already taken.")
-        return email
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        if self.cleaned_data.get("password"):
-            user.set_password(self.cleaned_data["password"])
-        if commit:
-            user.save()
-        return user
