@@ -7,20 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'input.css' %}">
     <link rel="stylesheet" href="{% static 'output.css' %}">
+    <link rel="stylesheet" href="{% static 'nav.css' %}">    
+
     <title>Home Page</title>
 </head>
 
 <body class="overflow-hidden h-screen bg-slate-50">
-    <nav class="border-2 border-ba-gray-500 border-t-gray-500 p-2 flex items-center justify-between">
-        <img src="{% static 'Images/_Logo.png' %}" alt="Sky Logo" class="w-14">
-        <p class="text-lg">
-            Believe in Better - A better and healthier future at Sky UK for customers, employees and everyone.
-        </p>
-        <div class="flex gap-4 text-lg">
-            <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-gray-700">Login</a>
-            <a href="{% url 'signup' %}" class="hover:border-b-2 hover:border-b-gray-500">Signup</a>
-        </div>        
-    </nav>
+    {% include 'coreNav.html' %}
+
 
     <div 
     class="h-[92.5%] w-full flex items-center justify-center p-2 px-10 bg-cover bg-center bg-no-repeat"
@@ -33,35 +27,7 @@
         </h1>
     </div>
 </div>
-
-<script>
-    const text = "Health Check!";
-    const typingTarget = document.getElementById("typing-text");
-    const cursor = document.getElementById("cursor");
-    let index = 0;
-    let isDeleting = false;
-
-    function typeLoop() {
-        if (!isDeleting && index <= text.length) {
-            typingTarget.textContent = text.substring(0, index);
-            index++;
-            setTimeout(typeLoop, 100);
-        } else if (isDeleting && index >= 0) {
-            typingTarget.textContent = text.substring(0, index);
-            index--;
-            setTimeout(typeLoop, 50);
-        } else {
-            isDeleting = !isDeleting;
-            setTimeout(typeLoop, 1000);
-        }
-    }
-
-    setInterval(() => {
-        cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-    }, 500);
-
-    window.onload = typeLoop;
-</script>
+<script src="{% static 'core/home.js' %}"></script>
 </body>
 </html>
 

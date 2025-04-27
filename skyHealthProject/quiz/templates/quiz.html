@@ -7,8 +7,11 @@
     <title>Health Check Quiz</title>
     <link rel="stylesheet" href="{% static 'input.css' %}">
     <link rel="stylesheet" href="{% static 'output.css' %}">
+    <link rel="stylesheet" href="{% static 'nav.css' %}">    
+
 </head>
 <body class="h-screen flex flex-col items-center justify-center bg-slate-50">
+    {% include 'userNav.html' %}
     <h1 class="text-4xl font-bold mb-4">Health Check Quiz Page</h1>
     <p class="text-xl">This is where the quiz questions will appear.</p>
 

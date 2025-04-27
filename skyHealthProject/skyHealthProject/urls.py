@@ -31,10 +31,10 @@ urlpatterns = [
 
     # Home + Dashboards (core views)
     path('', core_views.home_view, name='home'),
-    path("d-lead/", core_views.d_lead_dashboard_view, name="d_lead_dashboard"),
-    path("engineer/", core_views.engineer_dashboard_view, name="engineer_dashboard"),
-    path("senior/", core_views.senior_dashboard_view, name="senior_dashboard"),
-    path("team-lead/", core_views.team_lead_dashboard_view, name="team_lead_dashboard"),
+    path("deptLead/", user_views.d_lead_dashboard_view, name="d_lead_dashboard"),
+    path("engineer/", user_views.engineer_dashboard_view, name="engineer_dashboard"),
+    path("senior/", user_views.senior_dashboard_view, name="senior_dashboard"),
+    path("teamLead/", user_views.team_lead_dashboard_view, name="team_lead_dashboard"),
 
     # Profile (user view)
     path('profile/', user_views.profile_view, name='profile'),

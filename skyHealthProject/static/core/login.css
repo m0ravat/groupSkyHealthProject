@@ -1,0 +1,143 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* General Button Styling */
+.login-btn {
+    padding: 5px 30px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    border: 2px solid #000000;
+    border-radius: 50px;
+    background-color: hsl(0, 0%, 100%);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: black;
+    font-size: 20px;
+}
+
+.login-btn:hover {
+    background-color: transparent;
+    color: black;
+}
+
+/* Form Layout Utilities */
+.form-input { margin-bottom: 15px; }
+.form-label {
+    margin-bottom: 10px;
+    font-size: 20px;
+    margin-left: 55px;
+}
+.form-container { padding: 0; margin-top: 0; }
+
+/* Forgot Password Link
+.forgot-password {
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 55px;
+    font-size: 16px;
+} */
+
+/* Signup Text Styling */
+.bottom-text {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Captcha Image Sizing */
+.form-row.captcha-row img {
+    width: 150px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+/* Inline Layout for Email and Password Fields */
+.inline-form-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.inline-form-input label {
+    width: 25%; 
+    margin-right: 20px; 
+    text-align: left;
+}
+
+.inline-form-input input {
+    width: 60%;
+    margin-right: 20px;
+}
+
+/* Captcha image styling */
+.captcha-row img {
+    max-width: 120px;
+    height: auto;
+    margin-right: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/* Row styling for form fields */
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-right: 50px;
+}
+/* Style for the captcha input */
+.captcha-row input {
+    border: 2px solid black; /* Border color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 8px; /* Padding inside the input */
+    width: 50%; /* Adjust width as needed */
+}
+
+/* Preventing outline issues on focus */
+.captcha-row input:focus {
+    outline: none; /* Removes the default outline on focus */
+    border-color: #0071ff; /* Optional: Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 113, 255, 0.6); /* Optional: Add a subtle glow on focus */
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .login-form-container {
+        width: 80% !important;
+        height: auto !important;
+        padding: 30px 20px !important;
+    }
+    .form-label, .forgot-password { margin-left: 25px; }
+    .login-btn { width: 50% !important; font-size: 18px; }
+}
+
+@media (max-width: 640px) {
+    nav p {
+        font-size: 14px;
+        text-align: center;
+    }
+    .form-label, .forgot-password {
+        margin-left: 15px;
+        font-size: 14px;
+    }
+    .login-btn {
+        font-size: 16px;
+        padding: 8px 20px;
+    }
+    .bottom-text { font-size: 14px; }
+    
+    /* Captcha Image Responsiveness */
+    .captcha-row img {
+        max-width: 120px; /* Ensure image is not too large on mobile */
+        width: 100%; /* Full width on mobile */
+    }
+
+    /* Captcha Input Responsiveness */
+    .captcha-row input {
+        width: 90%; /* Wider input box on mobile */
+    }
+}

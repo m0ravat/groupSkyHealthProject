@@ -53,16 +53,5 @@ def login_view(request):
         form = LoginForm()
     return render(request, "login.html", {"form": form})
 
-# Views for different dashboards based on role
-def d_lead_dashboard_view(request):
-    return render(request, "dLeadDashboard.html")
 
-def engineer_dashboard_view(request):
-    return render(request, "engineerDashboard.html")
-
-def senior_dashboard_view(request):
-    return render(request, "seniorDashboard.html")
-
-def team_lead_dashboard_view(request):
-    return render(request, "teamLead_dashboard.html")
 

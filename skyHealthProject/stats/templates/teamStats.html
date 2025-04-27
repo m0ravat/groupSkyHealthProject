@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'input.css' %}">
     <link rel="stylesheet" href="{% static 'output.css' %}">
+    <link rel="stylesheet" href="{% static 'nav.css' %}">    
     <link rel="stylesheet" href="{% static 'stats/statsStyle.css' %}">
     <title>Document</title>
 </head>
-<body class=" text-xl overflow-x-hidden "
-    style = "background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);;">
-
+<body class=" text-xl overflow-x-hidden">
+  {% include 'userNav.html' %}
     <main class="flex mx-auto mb-6 w-max gap-y-8 mt-2 text-2xl items-center text-center flex-col">
         <h1 class="text-white font-bold text-5xl mt-4 mb-4 underline">Team Summary</h1>
         <div>
