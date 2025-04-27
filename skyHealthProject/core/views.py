@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate, login
 from .forms import SignupForm, LoginForm
 from .models import Department, Team
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 
 def home_view(request):
     return render(request, 'homePage.html')
@@ -13,8 +12,8 @@ def signup_view(request):
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
-            user = form.save()  # Save the user after form is validated
-            login(request, user)  # Automatically log the user in after signup
+            user = form.save()  
+            login(request, user) 
             
             # Redirect based on user role
             if user.role == 'seniorManager':
@@ -46,7 +45,7 @@ def login_view(request):
                 elif user.role == 'departmentLead':
                     return redirect('d_lead_dashboard')
                 else:
-                    return redirect('engineer_dashboard')  # Default to engineer dashboard if no specific role found
+                    return redirect('engineer_dashboard')
             else:
                 form.add_error(None, "Invalid email or password")
     else:
