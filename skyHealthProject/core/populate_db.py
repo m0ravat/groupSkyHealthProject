@@ -45,7 +45,18 @@ departments = [
 for d in departments:
     senior_manager = User.objects.get(username=d[1])
     dept_leader = User.objects.get(username=d[2])
-    Department.objects.get_or_create(deptName=d[0], seniorManager=senior_manager, deptLeader=dept_leader)
+    
+    # Get or create the department
+    dept, created = Department.objects.get_or_create(deptName=d[0])
+    if created:
+        dept.seniorManager = senior_manager
+        dept.deptLeader = dept_leader
+        dept.save()
+    else:
+        # If it already exists, just update the fields
+        dept.seniorManager = senior_manager
+        dept.deptLeader = dept_leader
+        dept.save()
 
 # ------ Teams ------ #
 teams = [
@@ -64,7 +75,16 @@ teams = [
 for t in teams:
     dept = Department.objects.get(deptName=t[1])
     team_leader = User.objects.get(username=t[2])
-    Team.objects.get_or_create(teamName=t[0], deptName=dept, teamLeader=team_leader)
+    
+    # Get or create the team
+    team, created = Team.objects.get_or_create(teamName=t[0], deptName=dept)
+    if created:
+        team.teamLeader = team_leader
+        team.save()
+    else:
+        # If the team exists, just update the teamLeader
+        team.teamLeader = team_leader
+        team.save()
 
 # ------ Sessions ------ #
 sessions = [
@@ -86,6 +106,8 @@ assignments = [
 for a in assignments:
     session = Session.objects.get(sessionId=a[2])
     user = User.objects.get(username=a[1])
+    
+    # Get or create session assignment
     SessionAssignment.objects.get_or_create(assignId=a[0], username=user, sessionId=session, additionalComments=a[3])
 
 # ------ Votes ------ #
@@ -120,4 +142,6 @@ for v in votes:
     assign = SessionAssignment.objects.get(assignId=v[6])
     card = Card.objects.get(cardId=v[3])
     user = User.objects.get(username=v[5])
+    
+    # Get or create the vote
     Vote.objects.get_or_create(voteId=v[0], rating=v[1], progress=v[2], cardId=card, sessionId=session, username=user, assignId=assign)
