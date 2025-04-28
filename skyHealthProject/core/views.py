@@ -6,6 +6,7 @@ from .forms import SignupForm, LoginForm
 from .models import Department, Team
 from django.shortcuts import render
 
+
 def home_view(request):
     return render(request, 'homePage.html')
 
@@ -19,9 +20,9 @@ def signup_view(request):
             # Redirect based on user role
             if user.role == 'seniorManager':
                 return redirect('senior_dashboard')
-            elif user.role == 'teamLead':
+            elif user.role == 'teamLeader':
                 return redirect('team_lead_dashboard')
-            elif user.role == 'departmentLead':
+            elif user.role == 'deptLeader':
                 return redirect('d_lead_dashboard')
             else:
                 return redirect('engineer_dashboard')
@@ -41,9 +42,9 @@ def login_view(request):
                 # Redirect to a dashboard depending on the user's role
                 if user.role == 'seniorManager':
                     return redirect('senior_dashboard')
-                elif user.role == 'teamLead':
+                elif user.role == 'teamLeader':
                     return redirect('team_lead_dashboard')
-                elif user.role == 'departmentLead':
+                elif user.role == 'deptLeader':
                     return redirect('d_lead_dashboard')
                 else:
                     return redirect('engineer_dashboard')

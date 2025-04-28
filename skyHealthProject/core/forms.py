@@ -12,13 +12,18 @@ class SignupForm(forms.ModelForm):
     team = forms.ModelChoiceField(queryset=Team.objects.all(), empty_label="Select Your Team")
 
     role = forms.ChoiceField(
-        choices=[("", "Select Your Role")] + User.Role_Choices,
+        choices=[("", "Select Your Role")] + [
+            ("Engineer", "Engineer"),
+            ("teamLeader", "Team Leader"),
+            ("deptLeader", "Department Leader"),
+            ("seniorManager", "Senior Manager"),
+        ],
         required=True
     )
 
     class Meta:
-        model = User
-        fields = ['username', 'firstName', 'lastName', 'email', 'role', 'department', 'team', 'password1', 'password2']
+        model = User  # Using the default User model
+        fields = ['username', 'first_name', 'last_name', 'email', 'role', 'department', 'team', 'password1', 'password2']
 
     def clean(self):
         cleaned_data = super().clean()
@@ -36,9 +41,9 @@ class SignupForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
+        user.set_password(self.cleaned_data["password1"])  # Hash password
         if commit:
-            user.save() 
+            user.save()
         return user
 
 class LoginForm(forms.Form):
