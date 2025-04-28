@@ -16,18 +16,13 @@
     <link rel="stylesheet" href="{% static 'core/signup.css' %}">    
 </head>
 
-<body>
+<body class="h-screen overflow-hidden flex flex-col">
     {% include 'coreNav.html' %}
 
     <!-- Main container with background image -->
-    <div style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');
-        background-size: cover;
-        background-position: center;">
+    <div class="flex items-center justify-center h-full bg-cover bg-center"
+    style="background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');">
+
 
         <!-- Signup Form -->
         <form method="POST" class="bg-white border-white border-2 rounded-3xl text-center p-6 text-2xl"
@@ -68,7 +63,7 @@
                 {{ form.firstName }}
             </div>
 
-            <!-- Surname (Last Name) field -->
+            <!-- Surname field -->
             <div class="form-row">
                 <label for="id_lastName">Surname:</label>
                 {{ form.lastName }}
