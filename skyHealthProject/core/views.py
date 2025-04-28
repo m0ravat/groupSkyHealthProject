@@ -85,20 +85,26 @@ def login_view(request):
         if form.is_valid():
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
-            user = authenticate(request, username=email, password=password)  # Corrected authentication method
-            if user is not None:
-                login(request, user)
-                # Redirect to a dashboard depending on the user's role
-                if user.role == 'seniorManager':
-                    return redirect('senior_dashboard')
-                elif user.role == 'teamLeader':
-                    return redirect('team_lead_dashboard')
-                elif user.role == 'deptLeader':
-                    return redirect('d_lead_dashboard')
+            
+            # Use email to find the user
+            try:
+                user = User.objects.get(email=email)  # Find user by email
+                if user.check_password(password):  # Check password
+                    login(request, user)
+                    # Redirect to appropriate dashboard based on user role
+                    if user.role == 'seniorManager':
+                        return redirect('senior_dashboard')
+                    elif user.role == 'teamLeader':
+                        return redirect('team_lead_dashboard')
+                    elif user.role == 'deptLeader':
+                        return redirect('d_lead_dashboard')
+                    else:
+                        return redirect('engineer_dashboard')
                 else:
-                    return redirect('engineer_dashboard')
-            else:
+                    form.add_error(None, "Invalid email or password")
+            except User.DoesNotExist:
                 form.add_error(None, "Invalid email or password")
     else:
         form = LoginForm()
+
     return render(request, "login.html", {"form": form})
