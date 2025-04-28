@@ -5,23 +5,23 @@ from quiz.models import SessionAssignment, Session, Vote, Card
 # ------ Users ------ #
 users = [
     # Engineers
-    ("jsmith", "John", "Smith", "jsmith@sky.com", "Pword123!", "engineer"),
-    ("engineer1", "Emma", "Watson", "emma1@sky.com", "Pword123!", "engineer"),
-    ("engineer2", "Liam", "Jones", "liam1@sky.com", "Pword123!", "engineer"),
-    ("engineer3", "Noah", "Taylor", "noah1@sky.com", "Pword123!", "engineer"),
-    ("engineer4", "Olivia", "Brown", "olivia1@sky.com", "Pword123!", "engineer"),
-    ("engineer5", "Sophia", "Davis", "sophia1@sky.com", "Pword123!", "engineer"),
+    ("jsmith", "John", "Smith", "jsmith@sky.com", "Pword123!", "engineer"),#
+    ("ewatson", "Emma", "Watson", "emma1@sky.com", "Pword123!", "engineer"),#
+    ("ljones", "Liam", "Jones", "liam1@sky.com", "Pword123!", "engineer"),#
+    ("ntaylor", "Noah", "Taylor", "noah1@sky.com", "Pword123!", "engineer"),#
+    ("obrown", "Olivia", "Brown", "olivia1@sky.com", "Pword123!", "engineer"),#
+    ("sdavis", "Sophia", "Davis", "sophia1@sky.com", "Pword123!", "engineer"),#
     # Team Leaders
-    ("akhan", "Aisha", "Khan", "akhan@sky.com", "Pword456!", "teamLead"),
-    ("ptart", "Peter", "Tart", "ptart@sky.com", "Pword655!", "teamLead"),
-    ("jthomas", "Jones", "Thomas", "jthomas@sky.com", "Pword987!", "teamLead"),
-    ("rpatel", "Rishi", "Patel", "rpatel@sky.com", "Pword432!", "teamLead"),
-    ("lroberts", "Lewis", "Roberts", "lroberts@sky.com", "Pword111!", "teamLead"),
+    ("akhan", "Aisha", "Khan", "akhan@sky.com", "Pword456!", "teamLead"),#
+    ("ptart", "Peter", "Tart", "ptart@sky.com", "Pword655!", "teamLead"),#
+    ("jthomas", "Jones", "Thomas", "jthomas@sky.com", "Pword987!", "teamLead"),#
+    ("rpatel", "Rishi", "Patel", "rpatel@sky.com", "Pword432!", "teamLead"),#
+    ("lroberts", "Lewis", "Roberts", "lroberts@sky.com", "Pword111!", "teamLead"),#
     # Department Leads
-    ("fsheikh", "Fuad", "Sheikh", "fsheikh@sky.com", "Pword789!", "departmentLead"),
-    ("dnguyen", "Don", "Nguyen", "dnguyen@sky.com", "Pword777!", "departmentLead"),
+    ("fsheikh", "Fuad", "Sheikh", "fsheikh@sky.com", "Pword789!", "departmentLead"),#
+    ("dnguyen", "Don", "Nguyen", "dnguyen@sky.com", "Pword777!", "departmentLead"),#
     # Senior Manager
-    ("msingh", "Mandeep", "Singh", "msingh@sky.com", "Pword000!", "seniorManager"),
+    ("msingh", "Mandeep", "Singh", "msingh@sky.com", "Pword000!", "seniorManager"),#
 ]
 
 # Create users first
