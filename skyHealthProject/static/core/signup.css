@@ -2,7 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     overflow-x: hidden;
-    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-y: auto; 
 }
 
 /* Sign-up page header styling */
@@ -24,7 +24,7 @@ form {
     text-align: left;
     overflow-y: auto;
     max-height: 80vh;
-    margin-top: 20px; /* Ensure some space from top */
+    margin-top: 20px; 
 }
 
 /* Styling for all form labels */
@@ -123,7 +123,7 @@ form select {
     form {
         width: 60%;
         padding: 15px;
-        margin-top: 25px; 
+        margin-top: 20px; 
         margin-bottom: 20px; 
     }
 
@@ -146,7 +146,7 @@ form select {
     form {
         width: 80%;
         padding: 15px;
-        margin-top: 25px; 
+        margin-top: 20px; 
         margin-bottom: 20px; 
     }
 
@@ -177,7 +177,7 @@ form select {
     form {
         width: 90%;
         padding: 10px;
-        margin-top: 25px; 
+        margin-top: 20px; 
         margin-bottom: 20px; 
     }
 
@@ -197,6 +197,6 @@ form select {
 
     /* Ensure that the form doesn't overlap with the navbar */
     body {
-        padding-top: 60px; /* Adjust according to your navbar height */
+        padding-top: 60px;
     }
 }

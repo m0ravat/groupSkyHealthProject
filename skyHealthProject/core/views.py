@@ -1,5 +1,6 @@
 # This file was coded by Iqra Shah w1973224
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate, login
 from .forms import SignupForm, LoginForm
 from .models import Department, Team
@@ -51,6 +52,3 @@ def login_view(request):
     else:
         form = LoginForm()
     return render(request, "login.html", {"form": form})
-
-
-
