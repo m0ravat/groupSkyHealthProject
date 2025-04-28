@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
+from core import views as core_views
 
 urlpatterns = [
-    path('', views.home, name='home'),  # Home page: select/create session
-    path('quiz/<int:session_assignment_id>/', views.quiz, name='quiz'),  # Quiz page for session
-    path('complete/', views.complete, name='complete'),  # Quiz completed page
+    path('', core_views.home_view, name='home'),
+    path('quiz/<int:session_assignment_id>/', views.quiz_view, name='quiz'),
+    path('complete/', views.quiz_success, name='complete'),
 ]

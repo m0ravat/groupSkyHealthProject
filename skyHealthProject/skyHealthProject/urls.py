@@ -45,5 +45,5 @@ urlpatterns = [
 
     # Quiz (quiz views)
     path('admin/', admin.site.urls),
-    path('', include('quiz.urls')),  # <-- your app is called "quiz"
+    path('', include('quiz.urls')), 
 ]
