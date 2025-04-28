@@ -12,4 +12,5 @@ If you install a library or dependency using pip ensure to save it to requiremen
 # How to run project
 
 Ensure you are in the first skyHealthProject folder by running `cd skyHealthProject` assuming you are in the groupSkyHealthProject folder already.       
+Run `python manage.py migrate `      to initialise db             
 Run ` python manage.py runserver` which will start it up.

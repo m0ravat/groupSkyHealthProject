@@ -1,4 +1,9 @@
-venv/
+# All written by Muhammad Ravat (w1984454)
+#Below ignores the venv folder created when you start a virtual environment. 
+venv/ 
 
-#remove the hashtage below to ignore the .env file, its commented out so it can be seen in github but outside of cwk would be ignored
-skyHealthProject/.env
+#removing the hastag below should ignore the .env file if you download the project, git has already tracked it so removing
+# the hastag wont ignore it if trying via GitHub. 
+
+
+#skyHealthProject/.env

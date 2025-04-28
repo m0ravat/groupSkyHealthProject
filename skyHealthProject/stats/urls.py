@@ -1,3 +1,4 @@
+# All code by Muhammad ravat (w1984454)
 from django.urls import path
 from . import views
 

@@ -19,6 +19,7 @@ from django.urls import path, include
 from core import views as core_views
 from user import views as user_views
 
+#Line 25 by Muhammad Ravat (w1984454) - Imported stats.urls folder so I can handle my routes in my app. 
 # Lines 26-40 were done by Iqra Shah (w1973224)
 urlpatterns = [
     path('admin/', admin.site.urls),

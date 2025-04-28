@@ -1,5 +1,6 @@
+# All code by Muhammad ravat (w1984454)
+
 from django.shortcuts import render
-from django.http import HttpResponse
 from templates import *
 # Create your views here.
 

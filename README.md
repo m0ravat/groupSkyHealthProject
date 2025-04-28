@@ -1,3 +1,4 @@
+# All documentation was written by Muhammad Ravat (w1984454)
 # Relevant Links for information on project setup etc
 
 - [Installation Requirements](docs/installation.md)
