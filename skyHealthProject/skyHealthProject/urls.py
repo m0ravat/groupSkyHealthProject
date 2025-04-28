@@ -42,4 +42,8 @@ urlpatterns = [
 
     # Profile (user view)
     path('profile/', user_views.profile_view, name='profile'),
+
+    # Quiz (quiz views)
+    path('admin/', admin.site.urls),
+    path('', include('quiz.urls')),  # <-- your app is called "quiz"
 ]
