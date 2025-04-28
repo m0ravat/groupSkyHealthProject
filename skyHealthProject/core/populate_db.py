@@ -1,5 +1,5 @@
-# This file was coded by Iqra Shah w1973224
-from core.models import User, Department, Team
+from django.contrib.auth.models import User, Group
+from core.models import Department, Team
 from quiz.models import SessionAssignment, Session, Vote, Card
 
 # ------ Users ------ #
@@ -24,8 +24,16 @@ users = [
     ("msingh", "Mandeep", "Singh", "msingh@sky.com", "Pword000!", "seniorManager"),
 ]
 
+# Create users first
 for u in users:
-    User.objects.get_or_create(username=u[0], firstName=u[1], lastName=u[2], email=u[3], password=u[4], role=u[5])
+    user, created = User.objects.get_or_create(username=u[0], first_name=u[1], last_name=u[2], email=u[3])
+    if created:
+        user.set_password(u[4])  # Set password securely
+        
+        # Assign user to the corresponding role group
+        role_group, created = Group.objects.get_or_create(name=u[5])  # Create the group if it doesn't exist
+        user.groups.add(role_group)  # Assign user to this group
+        user.save()
 
 # ------ Departments ------ #
 departments = [
@@ -33,8 +41,11 @@ departments = [
     ("fieldEngineering", "msingh", "dnguyen"),
 ]
 
+# Create departments ensuring the seniorManager and deptLeader users exist
 for d in departments:
-    Department.objects.get_or_create(deptName=d[0], seniorManager=User.objects.get(username=d[1]), deptLeader=User.objects.get(username=d[2]))
+    senior_manager = User.objects.get(username=d[1])
+    dept_leader = User.objects.get(username=d[2])
+    Department.objects.get_or_create(deptName=d[0], seniorManager=senior_manager, deptLeader=dept_leader)
 
 # ------ Teams ------ #
 teams = [
@@ -49,8 +60,11 @@ teams = [
     ("remoteMonitoringTeam", "fieldEngineering", "fsheikh"),
 ]
 
+# Create teams ensuring the teamLeader and deptName users exist
 for t in teams:
-    Team.objects.get_or_create(teamName=t[0], deptName=Department.objects.get(deptName=t[1]), teamLeader=User.objects.get(username=t[2]))
+    dept = Department.objects.get(deptName=t[1])
+    team_leader = User.objects.get(username=t[2])
+    Team.objects.get_or_create(teamName=t[0], deptName=dept, teamLeader=team_leader)
 
 # ------ Sessions ------ #
 sessions = [
@@ -58,6 +72,7 @@ sessions = [
     ("S2025Q2", "2025", "Q2"),
 ]
 
+# Create sessions
 for s in sessions:
     Session.objects.get_or_create(sessionId=s[0], sessionYear=s[1], sessionQuarter=s[2])
 
@@ -67,9 +82,11 @@ assignments = [
     ("A2", "jsmith", "S2025Q2", "I don’t feel like the work I’m currently doing is delivering value."),
 ]
 
+# Assign session assignments
 for a in assignments:
-    session = Session.objects.get(sessionId=a[2])  # Fetch the Session instance based on sessionId
-    SessionAssignment.objects.get_or_create(assignId=a[0], username=User.objects.get(username=a[1]), sessionId=session, additionalComments=a[3])
+    session = Session.objects.get(sessionId=a[2])
+    user = User.objects.get(username=a[1])
+    SessionAssignment.objects.get_or_create(assignId=a[0], username=user, sessionId=session, additionalComments=a[3])
 
 # ------ Votes ------ #
 votes = [
@@ -97,7 +114,10 @@ votes = [
     ("V22", 3, 67, "C11", "S2025Q2", "jsmith", "A2"),
 ]
 
+# Create votes ensuring the referenced users and sessions exist
 for v in votes:
-    session = Session.objects.get(sessionId=v[4])  # Fetch the Session instance based on sessionId
-    assign = SessionAssignment.objects.get(assignId=v[6])  # Fetch the SessionAssignment instance based on assignId
-    Vote.objects.get_or_create(voteId=v[0], rating=v[1], progress=v[2], cardId=Card.objects.get(cardId=v[3]), sessionId=session, username=User.objects.get(username=v[5]), assignId=assign)
+    session = Session.objects.get(sessionId=v[4])
+    assign = SessionAssignment.objects.get(assignId=v[6])
+    card = Card.objects.get(cardId=v[3])
+    user = User.objects.get(username=v[5])
+    Vote.objects.get_or_create(voteId=v[0], rating=v[1], progress=v[2], cardId=card, sessionId=session, username=user, assignId=assign)

@@ -29,6 +29,10 @@ urlpatterns = [
     path('signup/', core_views.signup_view, name='signup'),
     path('login/', core_views.login_view, name='login'),
 
+    # Email Verification and Account Activation
+    path('activate/<uidb64>/<token>/', core_views.activate_account, name='activate_account'),
+    path('email_verification/', core_views.email_verification, name='email_verification'),
+
     # Home + Dashboards (core views)
     path('', core_views.home_view, name='home'),
     path("deptLead/", user_views.d_lead_dashboard_view, name="d_lead_dashboard"),
