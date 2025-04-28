@@ -1,25 +1,38 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Engineer DashBoard</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <title>Team Lead Dashboard</title>
     <link rel="stylesheet" href="{% static 'input.css' %}">
     <link rel="stylesheet" href="{% static 'output.css' %}">
     <link rel="stylesheet" href="{% static 'user/dashboard.css' %}">
-    <link rel="stylesheet" href="{% static 'nav.css' %}">    
-
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
 </head>
 
 <body>
     {% include 'userNav.html' %}
 
-    <h1>Welcome To The Engineers DashBoard</h1>
+    <div class="main-container">
+        <!-- LEFT SIDE -->
+        <div class="left-container">
+            <h1>
+                <span id="typing-text"></span><span id="cursor"></span>
+            </h1>
+            
+            <button>Health Check Quiz</button>
+        </div>
 
-    <button>Health Check Quiz</button>
-
-    <img src="{% static 'Images/healthcheckimage.jpg' %}" alt="HealthCheck" class="healthcheck">
+        <!-- RIGHT SIDE -->
+        <div class="right-container">
+            <img src="{% static 'Images/healthcheckimage.jpg' %}" alt="HealthCheck" class="healthcheck">
+        </div>
+    </div>
+    
+    <script src="{% static 'user/dashboard.js' %}"></script>
 
 </body>
 </html>
