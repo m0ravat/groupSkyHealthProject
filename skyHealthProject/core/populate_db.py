@@ -12,7 +12,7 @@ users = [
     ("obrown", "Olivia", "Brown", "olivia1@sky.com", "Pword123!", "engineer"),#
     ("sdavis", "Sophia", "Davis", "sophia1@sky.com", "Pword123!", "engineer"),#
     # Team Leaders
-    ("akhan", "Aisha", "Khan", "akhan@sky.com", "Pword456!", "teamLead"),#
+    ("akhan", "Aisha", "Khan", "akhan@sky.com", "Test123!", "teamLead"),#
     ("ptart", "Peter", "Tart", "ptart@sky.com", "Pword655!", "teamLead"),#
     ("jthomas", "Jones", "Thomas", "jthomas@sky.com", "Pword987!", "teamLead"),#
     ("rpatel", "Rishi", "Patel", "rpatel@sky.com", "Pword432!", "teamLead"),#
