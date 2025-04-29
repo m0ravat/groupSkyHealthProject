@@ -22,14 +22,14 @@ def quiz_view(request):
         form = QuizForm(request.POST, cards=Card.objects.all())
         if form.is_valid():
             for card in Card.objects.all():
-                rating = form.cleaneddata.get(f'card{card.id}')
+                rating = form.cleaned_data.get(f'card{card.id}')
                 Vote.objects.create(
                     card=card,
                     session_assignment=session_assignment,
                     rating=rating,
-                    progress=rating  # you might have a better formula here
+                    progress=rating  # You can replace this with your formula
                 )
-            return redirect('quiz_success')
+            return redirect('complete')
 
     else:
         form = QuizForm(cards=Card.objects.all())
