@@ -51,6 +51,14 @@
             border: 1px solid #ffcccc;
             border-radius: 6px;
         }
+        .delete-form .form-field input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: inherit;
+        }
         .delete-form button {
             background-color: #e60000;
             color: white;
@@ -62,6 +70,18 @@
         }
         .delete-form button:hover {
             background-color: #cc0000;
+        }
+        .refresh-captcha {
+            background: none;
+            border: none;
+            color: #007BFF;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 5px;
+        }
+        .refresh-captcha:hover {
+            color: #0056b3;
         }
     </style>
 
@@ -114,11 +134,41 @@
 
             <form method="POST" action="">
                 {% csrf_token %}
-                {{ delete_form.as_p }}
+                {% for field in delete_form %}
+                    <div class="form-field">
+                        {{ field.label_tag }}
+
+                        {% if field.name == "captcha" %}
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                {{ field }}
+                                <button class="refresh-captcha" onclick="refreshCaptcha(); return false;">Refresh Captcha</button>
+                            </div>
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                        
+                        {% if field.errors %}
+                            <div style="color: red;">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
                 <button type="submit" name="delete_account">Delete My Account</button>
             </form>
         </div>
     </div>
+
+    <script>
+        function refreshCaptcha() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (img.src.includes('captcha')) {
+                    const currentSrc = img.src.split('?')[0];
+                    img.src = currentSrc + '?reload=' + new Date().getTime();
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
