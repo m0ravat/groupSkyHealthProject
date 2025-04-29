@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from .forms import SignupForm, LoginForm
-from .models import Department, Team
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
 from django.core.mail import send_mail
@@ -19,12 +18,12 @@ def signup_view(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.is_active = False  # Deactivate the user until email is verified
+            user.is_active = True
             user.save()
 
             # Generate token for email verification
             token = default_token_generator.make_token(user)
-            uid = urlsafe_base64_encode(str(user.pk).encode()).decode()
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
             current_site = get_current_site(request)
             mail_subject = 'Activate Your Account'
             message = render_to_string('email/activation_email.html', {
@@ -46,7 +45,7 @@ def email_verification(request):
 
 def activate_account(request, uidb64, token):
     try:
-        uid = urlsafe_base64_decode(uidb64).decode()
+        uid = force_str(urlsafe_base64_decode(uidb64))
         user = get_user_model().objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
         user = None
@@ -54,10 +53,19 @@ def activate_account(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)  # Log the user in after activation
-        return redirect('login')  # Redirect to login page after successful activation
+        login(request, user)
+
+        # 🔁 Redirect to appropriate dashboard based on role
+        if user.role == 'seniorManager':
+            return redirect('senior_dashboard')
+        elif user.role == 'teamLeader':
+            return redirect('team_lead_dashboard')
+        elif user.role == 'deptLeader':
+            return redirect('d_lead_dashboard')
+        else:
+            return redirect('engineer_dashboard')
     else:
-        return redirect('invalid_activation')  # Redirect to an error page if token is invalid
+        return redirect('invalid_activation')
 
 # def signup_view(request):
 #     if request.method == "POST":

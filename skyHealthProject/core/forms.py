@@ -1,7 +1,7 @@
 #This file was coded by Iqra Shah (w1973224)
 from django import forms
 from django.contrib.auth.models import User 
-from .models import User, Department, Team
+from .models import Department, Team
 from captcha.fields import CaptchaField
 
 class SignupForm(forms.ModelForm):
