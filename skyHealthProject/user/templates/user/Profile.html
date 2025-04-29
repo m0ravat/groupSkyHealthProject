@@ -4,87 +4,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
 
     <link rel="stylesheet" href="{% static 'output.css' %}">
     <link rel="stylesheet" href="{% static 'user/profile.css' %}">
     <link rel="stylesheet" href="{% static 'input.css' %}">
     <link rel="stylesheet" href="{% static 'nav.css' %}">
 
-    <title>Profile</title>
-
     <style>
         .profile-container {
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ccc;
         }
         .form-field {
             margin-bottom: 15px;
         }
         .form-field label {
+            font-weight: bold;
             display: block;
             margin-bottom: 5px;
-            font-weight: bold;
         }
         .form-field input {
             width: 100%;
-            padding: 8px 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 10px;
             font-size: 16px;
-            font-family: inherit;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         .button-container {
             margin-top: 20px;
         }
         .button-container button {
+            background-color: #4CAF50;
+            color: white;
             padding: 10px 20px;
-            margin-right: 10px;
-            cursor: pointer;
             font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
         }
         .delete-form {
-            margin-top: 50px;
+            margin-top: 40px;
             padding: 20px;
-            background-color: #fff5f5;
+            background: #ffecec;
             border: 1px solid #ffcccc;
-            border-radius: 6px;
+            border-radius: 8px;
         }
-        .delete-form .form-field input {
+        .delete-form h3 {
+            color: #cc0000;
+        }
+        .delete-form input {
             width: 100%;
-            padding: 8px 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 10px;
             font-size: 16px;
-            font-family: inherit;
+            border: 1px solid #cc0000;
+            border-radius: 5px;
         }
         .delete-form button {
             background-color: #e60000;
             color: white;
             padding: 12px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             font-size: 16px;
+            margin-top: 10px;
             cursor: pointer;
         }
         .delete-form button:hover {
             background-color: #cc0000;
         }
-        .refresh-captcha {
-            background: none;
-            border: none;
-            color: #007BFF;
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: underline;
-            margin-top: 5px;
-        }
-        .refresh-captcha:hover {
-            color: #0056b3;
-        }
     </style>
-
 </head>
 
 <body>
@@ -93,7 +90,6 @@
     <div class="profile-container">
         <h2>Profile Information</h2>
 
-        <!-- Profile Update Form -->
         <form method="POST" action="">
             {% csrf_token %}
 
@@ -127,48 +123,30 @@
             </div>
         </form>
 
-        <!-- Account Deletion Form -->
         <div class="delete-form">
             <h3>Danger Zone</h3>
             <p><strong>Warning:</strong> Deleting your account is permanent and cannot be undone.</p>
 
             <form method="POST" action="">
                 {% csrf_token %}
-                {% for field in delete_form %}
-                    <div class="form-field">
-                        {{ field.label_tag }}
+                <div class="form-field">
+                    {{ delete_form.password.label_tag }}
+                    {{ delete_form.password }}
+                </div>
 
-                        {% if field.name == "captcha" %}
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                {{ field }}
-                                <button class="refresh-captcha" onclick="refreshCaptcha(); return false;">Refresh Captcha</button>
-                            </div>
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
-                        
-                        {% if field.errors %}
-                            <div style="color: red;">{{ field.errors }}</div>
-                        {% endif %}
-                    </div>
-                {% endfor %}
+                <div class="form-field">
+                    {{ delete_form.captcha }}
+                    <br>
+                    <a href="#" onclick="event.preventDefault(); document.querySelector('img.captcha').src = document.querySelector('img.captcha').src.split('?')[0] + '?' + Math.random();">
+                        Refresh CAPTCHA 🔄
+                    </a>
+                </div>
 
                 <button type="submit" name="delete_account">Delete My Account</button>
             </form>
         </div>
-    </div>
 
-    <script>
-        function refreshCaptcha() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                if (img.src.includes('captcha')) {
-                    const currentSrc = img.src.split('?')[0];
-                    img.src = currentSrc + '?reload=' + new Date().getTime();
-                }
-            });
-        }
-    </script>
+    </div>
 
 </body>
 </html>
