@@ -35,13 +35,13 @@ def signup_view(request):
             send_mail(mail_subject, message, 'no-reply@yourdomain.com', [user.email])
 
             # Redirect to email verification page
-            return redirect('email_verification')  # You can show a message to the user here
+            return redirect('email_verification') 
     else:
         form = SignupForm()
     return render(request, "signup.html", {"form": form})
 
 def email_verification(request):
-    return render(request, 'email/email_verification.html')  # Page to inform user to check email
+    return render(request, 'email/email_verification.html')
 
 def activate_account(request, uidb64, token):
     try:
@@ -55,7 +55,7 @@ def activate_account(request, uidb64, token):
         user.save()
         login(request, user)
 
-        # 🔁 Redirect to appropriate dashboard based on role
+        # Redirect to appropriate dashboard based on role
         if user.role == 'seniorManager':
             return redirect('senior_dashboard')
         elif user.role == 'teamLeader':
@@ -67,26 +67,6 @@ def activate_account(request, uidb64, token):
     else:
         return redirect('invalid_activation')
 
-# def signup_view(request):
-#     if request.method == "POST":
-#         form = SignupForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()  
-#             login(request, user) 
-            
-    #         # Redirect based on user role
-    #         if user.role == 'seniorManager':
-    #             return redirect('senior_dashboard')
-    #         elif user.role == 'teamLeader':
-    #             return redirect('team_lead_dashboard')
-    #         elif user.role == 'deptLeader':
-    #             return redirect('d_lead_dashboard')
-    #         else:
-    #             return redirect('engineer_dashboard')
-    # else:
-    #     form = SignupForm()
-    # return render(request, "signup.html", {"form": form})
-
 def login_view(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -94,12 +74,11 @@ def login_view(request):
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
             
-            # Use email to find the user
             try:
-                user = User.objects.get(email=email)  # Find user by email
-                if user.check_password(password):  # Check password
+                user = User.objects.get(email=email)  
+                if user.check_password(password):  
                     login(request, user)
-                    # Redirect to appropriate dashboard based on user role
+                  
                     if user.role == 'seniorManager':
                         return redirect('senior_dashboard')
                     elif user.role == 'teamLeader':

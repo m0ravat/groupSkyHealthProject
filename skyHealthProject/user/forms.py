@@ -8,7 +8,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password']  # Fixed field names
+        fields = ['first_name', 'last_name', 'email', 'password'] 
 
     def clean_email(self):
         email = self.cleaned_data.get("email")

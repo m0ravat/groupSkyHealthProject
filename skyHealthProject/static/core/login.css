@@ -1,3 +1,5 @@
+/* This work was done by Muhammad Ravat and Iqra Shah (1973224) */
+
 html, body {
     height: 100%;
     margin: 0;
@@ -30,14 +32,6 @@ html, body {
     margin-left: 55px;
 }
 .form-container { padding: 0; margin-top: 0; }
-
-/* Forgot Password Link
-.forgot-password {
-    text-align: center;
-    margin-top: 10px;
-    margin-left: 55px;
-    font-size: 16px;
-} */
 
 /* Signup Text Styling */
 .bottom-text {
@@ -91,17 +85,17 @@ html, body {
 }
 /* Style for the captcha input */
 .captcha-row input {
-    border: 2px solid black; /* Border color */
-    border-radius: 8px; /* Rounded corners */
-    padding: 8px; /* Padding inside the input */
-    width: 50%; /* Adjust width as needed */
+    border: 2px solid black;
+    border-radius: 8px; 
+    padding: 8px; 
+    width: 50%; 
 }
 
 /* Preventing outline issues on focus */
 .captcha-row input:focus {
-    outline: none; /* Removes the default outline on focus */
-    border-color: #0071ff; /* Optional: Change border color on focus */
-    box-shadow: 0 0 5px rgba(0, 113, 255, 0.6); /* Optional: Add a subtle glow on focus */
+    outline: none;
+    border-color: #0071ff; 
+    box-shadow: 0 0 5px rgba(0, 113, 255, 0.6); 
 }
 
 /* Responsive Styles */
@@ -132,12 +126,12 @@ html, body {
     
     /* Captcha Image Responsiveness */
     .captcha-row img {
-        max-width: 120px; /* Ensure image is not too large on mobile */
-        width: 100%; /* Full width on mobile */
+        max-width: 120px; 
+        width: 100%; 
     }
 
     /* Captcha Input Responsiveness */
     .captcha-row input {
-        width: 90%; /* Wider input box on mobile */
+        width: 90%;
     }
 }

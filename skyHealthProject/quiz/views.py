@@ -1,3 +1,5 @@
+#This file was coded by Barket Omar Sheikh (w2045831)
+
 from django.shortcuts import render, redirect
 from .models import Card, Session, SessionAssignment, Vote
 from .forms import QuizForm
@@ -27,7 +29,7 @@ def quiz_view(request):
                     card=card,
                     session_assignment=session_assignment,
                     rating=rating,
-                    progress=rating  # You can replace this with your formula
+                    progress=rating  
                 )
             return redirect('complete')
 

@@ -1,6 +1,5 @@
 # This file was coded by Iqra Shah w1973224 and Muhammad Ravat (w1984454)
-# Muhammad Ravat contribution - created all table classes
-# Iqra - Created def methods for tables
+# Muhammad Ravat created table classes and all code below is Iqra's work.
 from django.db import models
 from django.contrib.auth.models import User 
 from django.contrib.auth.hashers import make_password, check_password

@@ -1,3 +1,5 @@
+#This file was coded by Iqra Shah (w1973224)
+
 from django.contrib.auth.models import User, Group
 from core.models import Department, Team
 from quiz.models import SessionAssignment, Session, Vote, Card
@@ -28,11 +30,10 @@ users = [
 for u in users:
     user, created = User.objects.get_or_create(username=u[0], first_name=u[1], last_name=u[2], email=u[3])
     if created:
-        user.set_password(u[4])  # Set password securely
+        user.set_password(u[4]) 
         
-        # Assign user to the corresponding role group
-        role_group, created = Group.objects.get_or_create(name=u[5])  # Create the group if it doesn't exist
-        user.groups.add(role_group)  # Assign user to this group
+        role_group, created = Group.objects.get_or_create(name=u[5])
+        user.groups.add(role_group)  
         user.save()
 
 # ------ Departments ------ #
@@ -143,5 +144,4 @@ for v in votes:
     card = Card.objects.get(cardId=v[3])
     user = User.objects.get(username=v[5])
     
-    # Get or create the vote
     Vote.objects.get_or_create(voteId=v[0], rating=v[1], progress=v[2], cardId=card, sessionId=session, username=user, assignId=assign)

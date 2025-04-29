@@ -4,14 +4,15 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .forms import ProfileForm, ConfirmDeleteForm
 
+# Views made by Iqra for Hamza's profile page
+
 def profile_view(request):
     user = request.user
 
-    # Only show form if the user is authenticated, otherwise create empty
     if user.is_authenticated:
         profile_form = ProfileForm(instance=user)
     else:
-        profile_form = None  # No form if user isn't logged in
+        profile_form = None  
 
     delete_form = ConfirmDeleteForm()
 

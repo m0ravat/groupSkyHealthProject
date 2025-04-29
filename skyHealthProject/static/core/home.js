@@ -1,3 +1,4 @@
+//This was created by Iqra Shah (1973224)
 const text = "Health Check!";
 const typingTarget = document.getElementById("typing-text");
 const cursor = document.getElementById("cursor");
