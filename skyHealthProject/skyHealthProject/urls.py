@@ -45,6 +45,7 @@ urlpatterns = [
     path('profile/', user_views.profile_view, name='profile'),
 
     # Quiz (quiz views)
-    path('admin/', admin.site.urls),
-    path('', include('quiz.urls')), 
+     path('admin/', admin.site.urls),
+    path('quiz/', include('quiz.urls')),
+    path('stats/', include('stats.urls')), 
 ]
