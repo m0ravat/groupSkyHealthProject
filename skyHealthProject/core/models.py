@@ -6,30 +6,30 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password, check_password
 import re
 
-# class User(models.Model):
-#     Role_Choices = [
-#         ("Engineer", "Engineer"),
-#         ("teamLeader", "Team Leader"),
-#         ("deptLeader", "Department Leader"),
-#         ("seniorManager", "Senior Manager"),
-#     ]
-#     username = models.CharField(max_length=50, primary_key=True)
-#     firstName = models.CharField(max_length=50)
-#     lastName = models.CharField(max_length=50)
-#     email = models.EmailField()
-#     role = models.CharField(choices=Role_Choices, max_length=50)
-#     password = models.CharField(max_length=128)
+class User(models.Model):
+    Role_Choices = [
+        ("Engineer", "Engineer"),
+        ("teamLeader", "Team Leader"),
+        ("deptLeader", "Department Leader"),
+        ("seniorManager", "Senior Manager"),
+    ]
+    username = models.CharField(max_length=50, primary_key=True)
+    firstName = models.CharField(max_length=50)
+    lastName = models.CharField(max_length=50)
+    email = models.EmailField()
+    role = models.CharField(choices=Role_Choices, max_length=50)
+    password = models.CharField(max_length=128)
 
-#     class Meta:
-#         db_table = "User"
+    class Meta:
+        db_table = "User"
     
-    # # Method to hash the password when setting it
-    # def set_password(self, raw_password):
-    #     self.password = make_password(raw_password)
+    # Method to hash the password when setting it
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
 
-    # # Method to check if the password matches the hashed password
-    # def check_password(self, raw_password):
-    #     return check_password(raw_password, self.password)
+    # Method to check if the password matches the hashed password
+    def check_password(self, raw_password):
+        return check_password(raw_password, self.password)
 
 class Department(models.Model):
     Dept_Choices = []
