@@ -1,9 +1,12 @@
+/* Work by Iqra Shah (1973224) and Muhammad Ravat */
+
+/* General Layout */
 html, body {
     height: 100%;
     margin: 0;
 }
 
-/* General Button Styling */
+/* Button Styling */
 .login-btn {
     padding: 5px 30px;
     margin-top: 35px;
@@ -22,7 +25,7 @@ html, body {
     color: black;
 }
 
-/* Form Layout Utilities */
+/* Form Layout */
 .form-input { margin-bottom: 15px; }
 .form-label {
     margin-bottom: 10px;
@@ -31,14 +34,6 @@ html, body {
 }
 .form-container { padding: 0; margin-top: 0; }
 
-/* Forgot Password Link
-.forgot-password {
-    text-align: center;
-    margin-top: 10px;
-    margin-left: 55px;
-    font-size: 16px;
-} */
-
 /* Signup Text Styling */
 .bottom-text {
     margin-top: 5px;
@@ -46,7 +41,7 @@ html, body {
     font-size: 18px;
 }
 
-/* Captcha Image Sizing */
+/* Captcha Styling */
 .form-row.captcha-row img {
     width: 150px;
     height: 50px;
@@ -54,7 +49,7 @@ html, body {
     margin-bottom: 10px;
 }
 
-/* Inline Layout for Email and Password Fields */
+/* Inline Layout for Email and Password */
 .inline-form-input {
     display: flex;
     align-items: center;
@@ -72,7 +67,7 @@ html, body {
     margin-right: 20px;
 }
 
-/* Captcha image styling */
+/* Captcha Image */
 .captcha-row img {
     max-width: 120px;
     height: auto;
@@ -80,7 +75,8 @@ html, body {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-/* Row styling for form fields */
+
+/* Row Styling for Form Fields */
 .form-row {
     display: flex;
     align-items: center;
@@ -89,19 +85,19 @@ html, body {
     margin-top: 10px;
     margin-right: 50px;
 }
-/* Style for the captcha input */
+
+/* Captcha Input */
 .captcha-row input {
-    border: 2px solid black; /* Border color */
-    border-radius: 8px; /* Rounded corners */
-    padding: 8px; /* Padding inside the input */
-    width: 50%; /* Adjust width as needed */
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 8px;
+    width: 50%;
 }
 
-/* Preventing outline issues on focus */
 .captcha-row input:focus {
-    outline: none; /* Removes the default outline on focus */
-    border-color: #0071ff; /* Optional: Change border color on focus */
-    box-shadow: 0 0 5px rgba(0, 113, 255, 0.6); /* Optional: Add a subtle glow on focus */
+    outline: none;
+    border-color: #0071ff;
+    box-shadow: 0 0 5px rgba(0, 113, 255, 0.6);
 }
 
 /* Responsive Styles */
@@ -130,14 +126,12 @@ html, body {
     }
     .bottom-text { font-size: 14px; }
     
-    /* Captcha Image Responsiveness */
     .captcha-row img {
-        max-width: 120px; /* Ensure image is not too large on mobile */
-        width: 100%; /* Full width on mobile */
+        max-width: 120px;
+        width: 100%;
     }
 
-    /* Captcha Input Responsiveness */
     .captcha-row input {
-        width: 90%; /* Wider input box on mobile */
+        width: 90%;
     }
 }
