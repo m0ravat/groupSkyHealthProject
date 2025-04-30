@@ -1,24 +1,22 @@
 <!--Moved here by Muhammad Ravat (w1984454), html/css by Muhammad Ravat (w1984454), stats/quiz links by Muhammad Ravat (w1984454)-->
-<!-- Line 23 Sign out link by Mohi (W1972510) -->
-<!-- Line 9-10 Moved the sky logo to the left across all pages by Mohi (W1972510) -->
-<!-- Line 15-17 Onl displayes Quiz to a valid user by Mohi (W1972510) -->
+<!-- Iqra Shah (1973224) tidied the code for better readbility and added static -->
+
 {% load static %}
 <nav class="border-2 border-b-gray-500 border-t-gray-500 p-2 bg-slate-50 flex justify-between items-center">
-
+    <!-- Mohi (W1972510) moved the sky logo to the left across all pages-->
     <!-- Left section: Logo + links -->
     <div class="flex gap-x-10 items-center">
         <img src="{% static 'Images/_Logo.png' %}" alt="Sky Logo" class="skylogo">
 
         <a href="{% url 'profile' %}" class="hover:border-b-2 hover:border-b-gray-500">Profile</a>
         <a href="{% url 'stats' %}" class="hover:border-b-2 hover:border-b-gray-500">Health Check Statistics</a>
-        
+        <!-- Line 14-16 Onl displayes Quiz to a valid user by Mohi (W1972510) -->
         {% if not is_dlead and not is_senior %}
         <a href="{% url 'quiz' %}" class="hover:border-b-2 hover:border-b-gray-500">Quiz</a>
     {% endif %}
     
-
     </div>
-
+    <!-- Sign out link redirect by Mohi (W1972510) -->
     <!-- Right section: Sign out -->
     <div class="text-lg">
         <a href="{% url 'logout' %}" class="hover:border-b-2 hover:border-b-gray-500">Sign out</a>
