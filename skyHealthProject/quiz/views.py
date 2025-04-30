@@ -1,11 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Card, Session, SessionAssignment, Vote
 from .forms import QuizForm
-from django.contrib.auth.decorators import login_required
 
-@login_required
 def quiz_view(request):
-    user = request.user
+    user = request.user if request.user.is_authenticated else None
     sessions = Session.objects.all()
 
     if request.method == 'POST':
@@ -15,22 +13,27 @@ def quiz_view(request):
         if new_session_name:
             session = Session.objects.create(name=new_session_name)
         else:
-            session = Session.objects.get(id=session_id)
+            session = get_object_or_404(Session, id=session_id)
 
-        session_assignment, created = SessionAssignment.objects.get_or_create(user=user, session=session)
+        # Prevent assigning sessions to anonymous users
+        if user:
+            session_assignment, _ = SessionAssignment.objects.get_or_create(user=user, session=session)
+        else:
+            # You might need to handle anonymous users differently
+            session_assignment = None
 
         form = QuizForm(request.POST, cards=Card.objects.all())
-        if form.is_valid():
+        if form.is_valid() and session_assignment:
             for card in Card.objects.all():
-                rating = form.cleaneddata.get(f'card{card.id}')
-                Vote.objects.create(
-                    card=card,
-                    session_assignment=session_assignment,
-                    rating=rating,
-                    progress=rating  # you might have a better formula here
-                )
+                rating = form.cleaned_data.get(f'card{card.id}')
+                if rating is not None:
+                    Vote.objects.create(
+                        card=card,
+                        session_assignment=session_assignment,
+                        rating=rating,
+                        progress=rating
+                    )
             return redirect('quiz_success')
-
     else:
         form = QuizForm(cards=Card.objects.all())
 
