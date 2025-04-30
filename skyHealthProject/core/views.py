@@ -1,5 +1,4 @@
 # This file was coded by Iqra Shah w1973224
-# Line 99-104 was done Mohi (1972510)
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
@@ -55,7 +54,6 @@ def activate_account(request, uidb64, token):
         user.save()
         login(request, user)
 
-        # 🔁 Redirect to appropriate dashboard based on role
         if user.role == 'seniorManager':
             return redirect('senior_dashboard')
         elif user.role == 'teamLeader':
@@ -95,7 +93,7 @@ def login_view(request):
 
     return render(request, "login.html", {"form": form})
 
-
+# Done by Mohiuddin Mohammed (1972510)
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 

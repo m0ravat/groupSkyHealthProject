@@ -1,5 +1,5 @@
 # This code was done by Iqra Shah (1973224)
-# Mohi (W1972510) created a custoum flag to be sent from views by Mohi(W1972510) 
+# Created a custoum flag to be sent from views by Mohiuddin Mohammed(W1972510) 
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate
