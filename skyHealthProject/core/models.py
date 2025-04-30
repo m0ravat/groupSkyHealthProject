@@ -21,11 +21,9 @@ class User(models.Model):
     class Meta:
         db_table = "User"
     
-    # Method to hash the password when setting it
     def set_password(self, raw_password):
         self.password = make_password(raw_password)
 
-    # Method to check if the password matches the hashed password
     def check_password(self, raw_password):
         return check_password(raw_password, self.password)
 
