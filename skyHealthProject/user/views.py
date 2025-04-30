@@ -1,4 +1,4 @@
-# Line 46-47 Creats a custoum flag to be sent from views by Mohi(W1972510) 
+# Line 47 & 53 Creats a custoum flag to be sent from views by Mohi(W1972510) 
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate
@@ -50,7 +50,7 @@ def engineer_dashboard_view(request):
     return render(request, "user/engineerDashboard.html")
 
 def senior_dashboard_view(request):
-    return render(request, "user/seniorDashboard.html")
+    return render(request, "user/seniorDashboard.html", {'is_senior': True})
 
 def team_lead_dashboard_view(request):
     return render(request, "user/teamLead_dashboard.html")
