@@ -19,9 +19,9 @@ from django.contrib import admin
 from django.urls import path, include
 from core import views as core_views
 from user import views as user_views
-#Line 53 was implemented by Mohi (1972510)
 #Line 26 by Muhammad Ravat (w1984454) - Imported stats.urls folder so I can handle my routes in my app. 
-# Lines 27-41 were done by Iqra Shah (w1973224)
+# Lines 28-43 were done by Iqra Shah (w1973224)
+#Line 53 was implemented by Mohi (1972510)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('stats/', include('stats.urls')),
@@ -35,18 +35,18 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', core_views.activate_account, name='activate_account'),
     path('email_verification/', core_views.email_verification, name='email_verification'),
 
-    # Home + Dashboards (core views)
+    # Home + Dashboards 
     path('', core_views.home_view, name='home'),
     path("deptLead/", user_views.d_lead_dashboard_view, name="d_lead_dashboard"),
     path("engineer/", user_views.engineer_dashboard_view, name="engineer_dashboard"),
     path("senior/", user_views.senior_dashboard_view, name="senior_dashboard"),
     path("teamLead/", user_views.team_lead_dashboard_view, name="team_lead_dashboard"),
 
-    # Profile (user view)
+    # Profile 
     path('profile/', user_views.profile_view, name='profile'),
 
-    # Quiz (quiz views)
-     path('admin/', admin.site.urls),
+    # Quiz 
+    path('admin/', admin.site.urls),
     path('quiz/', include('quiz.urls')),
     path('stats/', include('stats.urls')), 
 
