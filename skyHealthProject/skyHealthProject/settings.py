@@ -9,6 +9,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = []
 
+# Lines 24-25 done by Iqra Shah (1973224)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -61,16 +62,8 @@ DATABASES = {
     }
 }
 
-# Email Backend Settings
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For development (prints emails in the console)
-# For production, replace the above line with:
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# Email Backend Settings - Done by Iqra Shah (1973224)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  
 
 AUTH_PASSWORD_VALIDATORS = [
     {
