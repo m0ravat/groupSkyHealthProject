@@ -1,3 +1,5 @@
+# Line 46-47 Creats a costome flag to be sent from views by Mohi(W1972510) 
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate
 from django.contrib import messages
