@@ -1,14 +1,14 @@
+# Forms made by Iqra Shah (1973224)
 from django import forms
 from django.contrib.auth.models import User
 from captcha.fields import CaptchaField
 
-# Forms made by Iqra for Hamza's profile page
 class ProfileForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, required=False)
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password']  # Fixed field names
+        fields = ['first_name', 'last_name', 'email', 'password']
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
