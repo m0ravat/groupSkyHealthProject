@@ -1,4 +1,9 @@
 # This file was coded by Iqra Shah w1973224
+<<<<<<< Updated upstream
+=======
+# Line 126-128 was done Mohi (1972510)
+
+>>>>>>> Stashed changes
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
