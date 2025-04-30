@@ -1,3 +1,5 @@
+/* Work by Iqra Shah (1973224)*/
+
 // Typing Effect Code
 const texts = ["Welcome to your dashboard!"];
 const typingTarget = document.getElementById("typing-text");
@@ -24,13 +26,9 @@ function typeLoop() {
         setTimeout(typeLoop, 1000);
     }
 }
-
-// Cursor Blinking Effect
 setInterval(() => {
     cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
 }, 500);
-
-// Start Typing Effect on Page Load
 window.onload = typeLoop;
 
 
@@ -38,8 +36,6 @@ window.onload = typeLoop;
 // Button Star Animation Code
 const button = document.querySelector(".left-container button");
 let stars = [];
-
-// Mouseover Event to Create Stars
 button.addEventListener("mouseover", () => {
     removeStars();
     for (let i = 0; i < 5; i++) {
@@ -65,17 +61,12 @@ button.addEventListener("mouseover", () => {
             star.style.transform = `rotate(45deg) translate(${moveX}px, ${moveY}px)`;
             star.style.opacity = "0";
         }, 50);
-        
         stars.push(star);
     }
 });
-
-// Mouseleave Event to Remove Stars
 button.addEventListener("mouseleave", () => {
     removeStars();
 });
-
-// Function to Remove Stars After Animation
 function removeStars() {
     stars.forEach(star => {
         star.style.opacity = "0";
