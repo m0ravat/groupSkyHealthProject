@@ -55,7 +55,6 @@ def activate_account(request, uidb64, token):
         user.save()
         login(request, user)
 
-        # 🔁 Redirect to appropriate dashboard based on role
         if user.role == 'seniorManager':
             return redirect('senior_dashboard')
         elif user.role == 'teamLeader':
