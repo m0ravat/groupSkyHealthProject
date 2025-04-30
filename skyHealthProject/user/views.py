@@ -42,7 +42,7 @@ def profile_view(request):
 
 # Dashboard views
 def d_lead_dashboard_view(request):
-    return render(request, "user/dLeadDashboard.html")
+    return render(request, "user/dLeadDashboard.html", {'is_dlead': True})
 
 def engineer_dashboard_view(request):
     return render(request, "user/engineerDashboard.html")
