@@ -1,4 +1,6 @@
 # This file was coded by Iqra Shah w1973224
+# Line 125-128 was done Mohi (1972510)
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
@@ -123,4 +125,4 @@ from django.shortcuts import redirect
 
 def logout_view(request):
     logout(request)
-    return redirect('home')  # or use '/' if your home view isn't named 'home'
+    return redirect('home')  #Redirect to home page after logout
