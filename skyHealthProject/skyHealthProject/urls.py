@@ -14,13 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from core.views import logout_view
 from django.contrib import admin
 from django.urls import path, include
 from core import views as core_views
 from user import views as user_views
-
-#Line 25 by Muhammad Ravat (w1984454) - Imported stats.urls folder so I can handle my routes in my app. 
-# Lines 26-40 were done by Iqra Shah (w1973224)
+#Line 53 was implemented by Mohi (1972510)
+#Line 26 by Muhammad Ravat (w1984454) - Imported stats.urls folder so I can handle my routes in my app. 
+# Lines 27-41 were done by Iqra Shah (w1973224)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('stats/', include('stats.urls')),
@@ -48,4 +49,6 @@ urlpatterns = [
      path('admin/', admin.site.urls),
     path('quiz/', include('quiz.urls')),
     path('stats/', include('stats.urls')), 
+
+    path('logout/', logout_view, name='logout'),
 ]

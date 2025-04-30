@@ -116,3 +116,11 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, "login.html", {"form": form})
+
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')  # or use '/' if your home view isn't named 'home'
