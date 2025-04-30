@@ -1,6 +1,4 @@
 # This file was coded by Iqra Shah w1973224
-# Line 99-104 was done Mohi (1972510)
-
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
@@ -94,7 +92,7 @@ def login_view(request):
 
     return render(request, "login.html", {"form": form})
 
-
+# Done by Mohi (1972510)
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 
