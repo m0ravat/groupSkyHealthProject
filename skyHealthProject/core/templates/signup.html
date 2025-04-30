@@ -1,3 +1,5 @@
+<!-- Added a glow border effect like login form by Mohi (w1972510) -->
+
 {% load static %}
 {% load widget_tweaks %}
 
@@ -24,85 +26,96 @@
     style="background-image: url('{% static 'Images/dark-abstract-with-flowing-waves.jpg' %}');">
 
         <!-- Signup Form -->
-        <form method="POST" class="bg-white border-white border-2 rounded-3xl text-center p-6 text-2xl"
-            style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: left; min-height: 500px;">
-            {% csrf_token %} <!-- Django's security token to prevent CSRF attacks -->
+        <form method="POST"
+        class="h-[70%] w-3/6 right-0 border-white border-2 rounded-3xl text-center p-2 text-2xl form-container"
+        style="background: linear-gradient(90deg, #f56400 9.9%, #ff0000 35%, #b5007d 60%, #21429c 85%, #0071ff 100%);
+       box-shadow: 0 10px 30px rgba(245, 100, 0, 0.6),
+                   0 10px 30px rgba(255, 0, 0, 0.6),
+                   0 40px 50px rgba(181, 0, 125, 0.6),
+                   0 50px 60px rgba(33, 66, 156, 0.6),
+                   0 60px 70px rgba(0, 113, 255, 0.6);">
 
-            <!-- Form title -->
-            <h1 class="sign-up-header text-center">Sign Up!</h1>
+{% csrf_token %}
 
-            <!-- Role field -->
-            <div class="form-row">
-                <label for="id_role">What is your role?</label>
-                {{ form.role }}
-            </div>
+<!-- Form title -->
+<h1 class="sign-up-header text-center mb-6 mt-4 font-bold"
+    style="font-size: 2rem; margin-bottom: 40px; margin-top: 40px;">
+    Sign Up!
+</h1>
 
-            <!-- Department field -->
-            <div class="form-row">
-                <label for="id_department">What is your department?</label>
-                {{ form.department }}
-            </div>
+<!-- Role field -->
+<div class="form-row">
+    <label for="id_role">What is your role?</label>
+    {{ form.role }}
+</div>
 
-            <!-- Team field -->
-            <div class="form-row">
-                <label for="id_team">What is your team?</label>
-                {{ form.team }}
-            </div>
+<!-- Department field -->
+<div class="form-row">
+    <label for="id_department">What is your department?</label>
+    {{ form.department }}
+</div>
 
-            <!-- Email field -->
-            <div class="form-row">
-                <label for="id_email">Email:</label>
-                {{ form.email }}
-            </div>
+<!-- Team field -->
+<div class="form-row">
+    <label for="id_team">What is your team?</label>
+    {{ form.team }}
+</div>
 
-           <!-- First Name field -->
-            <div class="form-row">
-                <label for="id_first_name">First Name:</label>
-                {{ form.first_name }} <!-- Updated field name -->
-            </div>
+<!-- Email field -->
+<div class="form-row">
+    <label for="id_email">Email:</label>
+    {{ form.email }}
+</div>
 
-            <!-- Surname field -->
-            <div class="form-row">
-                <label for="id_last_name">Surname:</label>
-                {{ form.last_name }} <!-- Updated field name -->
-            </div>
+<!-- First Name field -->
+<div class="form-row">
+    <label for="id_first_name">First Name:</label>
+    {{ form.first_name }}
+</div>
 
-            <div class="form-row">
-                <label for="id_username">Username:</label>
-                {{ form.username }}
-            </div>
-            
-            <!-- Password field -->
-            <div class="form-row">
-                <label for="id_password1">Password:</label>
-                {{ form.password1 }}
-            </div>
+<!-- Surname field -->
+<div class="form-row">
+    <label for="id_last_name">Surname:</label>
+    {{ form.last_name }}
+</div>
 
-            <!-- Confirm Password field -->
-            <div class="form-row">
-                <label for="id_password2">Re-enter Password:</label>
-                {{ form.password2 }}
-            </div>
+<div class="form-row">
+    <label for="id_username">Username:</label>
+    {{ form.username }}
+</div>
 
-            <!-- Captcha field -->
-            <div class="form-row captcha-row">
-                <label for="id_captcha">Captcha:</label>
-                {{ form.captcha }}
-            </div>
+<!-- Password field -->
+<div class="form-row">
+    <label for="id_password1">Password:</label>
+    {{ form.password1 }}
+</div>
 
-            <!-- Submit button to register -->
-            <div class="centered-field">
-                <button type="submit" class="register-btn">Register</button>
-            </div>
+<!-- Confirm Password field -->
+<div class="form-row">
+    <label for="id_password2">Re-enter Password:</label>
+    {{ form.password2 }}
+</div>
 
-            <!-- Footer link for users who already have an account -->
-            <div class="form-footer text-center mt-4">
-                <p>Already have an account?
-                    <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-black-500">Login</a>
-                </p>
-            </div>
-        </form>
+<!-- Captcha field -->
+<div class="form-row captcha-row">
+    <label for="id_captcha">Captcha:</label>
+    {{ form.captcha }}
+</div>
+
+<!-- Submit button -->
+<div class="centered-field">
+    <button type="submit" class="register-btn mt-7 text-3xl border-2 mb-6 border-black bg-white p-2 w-2/6 rounded-md">
+        Register
+    </button>
+</div>
+
+<!-- Footer link -->
+<div class="form-footer text-center mt-4">
+    <p>Already have an account?
+        <a href="{% url 'login' %}" class="hover:border-b-2 hover:border-b-black-500">Login</a>
+    </p>
+</div>
+</form>
 
     </div>
 </body>
