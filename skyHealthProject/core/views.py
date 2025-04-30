@@ -1,5 +1,5 @@
 # This file was coded by Iqra Shah w1973224
-# Line 125-128 was done Mohi (1972510)
+# Line 99-104 was done Mohi (1972510)
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
@@ -23,7 +23,6 @@ def signup_view(request):
             user.is_active = True
             user.save()
 
-            # Generate token for email verification
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             current_site = get_current_site(request)
@@ -36,14 +35,13 @@ def signup_view(request):
             })
             send_mail(mail_subject, message, 'no-reply@yourdomain.com', [user.email])
 
-            # Redirect to email verification page
-            return redirect('email_verification')  # You can show a message to the user here
+            return redirect('email_verification')  
     else:
         form = SignupForm()
     return render(request, "signup.html", {"form": form})
 
 def email_verification(request):
-    return render(request, 'email/email_verification.html')  # Page to inform user to check email
+    return render(request, 'email/email_verification.html') 
 
 def activate_account(request, uidb64, token):
     try:
@@ -69,26 +67,6 @@ def activate_account(request, uidb64, token):
     else:
         return redirect('invalid_activation')
 
-# def signup_view(request):
-#     if request.method == "POST":
-#         form = SignupForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()  
-#             login(request, user) 
-            
-    #         # Redirect based on user role
-    #         if user.role == 'seniorManager':
-    #             return redirect('senior_dashboard')
-    #         elif user.role == 'teamLeader':
-    #             return redirect('team_lead_dashboard')
-    #         elif user.role == 'deptLeader':
-    #             return redirect('d_lead_dashboard')
-    #         else:
-    #             return redirect('engineer_dashboard')
-    # else:
-    #     form = SignupForm()
-    # return render(request, "signup.html", {"form": form})
-
 def login_view(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -96,12 +74,10 @@ def login_view(request):
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
             
-            # Use email to find the user
             try:
-                user = User.objects.get(email=email)  # Find user by email
-                if user.check_password(password):  # Check password
+                user = User.objects.get(email=email)  
+                if user.check_password(password): 
                     login(request, user)
-                    # Redirect to appropriate dashboard based on user role
                     if user.role == 'seniorManager':
                         return redirect('senior_dashboard')
                     elif user.role == 'teamLeader':
@@ -125,4 +101,4 @@ from django.shortcuts import redirect
 
 def logout_view(request):
     logout(request)
-    return redirect('home')  #Redirect to home page after logout
+    return redirect('home')  
