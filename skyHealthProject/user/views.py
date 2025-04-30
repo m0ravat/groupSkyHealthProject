@@ -1,4 +1,5 @@
-# Line 47 & 53 Creats a custoum flag to be sent from views by Mohi(W1972510) 
+# This code was done by Iqra Shah (1973224)
+# Mohi (W1972510) created a custoum flag to be sent from views by Mohi(W1972510) 
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate
@@ -9,11 +10,10 @@ from .forms import ProfileForm, ConfirmDeleteForm
 def profile_view(request):
     user = request.user
 
-    # Only show form if the user is authenticated, otherwise create empty
     if user.is_authenticated:
         profile_form = ProfileForm(instance=user)
     else:
-        profile_form = None  # No form if user isn't logged in
+        profile_form = None 
 
     delete_form = ConfirmDeleteForm()
 
