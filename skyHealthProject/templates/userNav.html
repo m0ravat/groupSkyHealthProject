@@ -1,20 +1,20 @@
 <!--Moved here by Muhammad Ravat (w1984454), html/css by Muhammad Ravat (w1984454), stats/quiz links by Muhammad Ravat (w1984454)-->
-
 <!-- Line 18 Sign out link by Mohi (W1972510) -->
-
-
+<!-- Line 8-9 Moved the sky logo to the left across all pages by Mohi (W1972510) -->
 {% load static %}
-
 <nav class="border-2 border-b-gray-500 border-t-gray-500 p-2 bg-slate-50 flex justify-between items-center">
-    <div class="flex gap-x-10 justify-center">
+
+    <!-- Left section: Logo + links -->
+    <div class="flex gap-x-10 items-center">
+        <img src="{% static 'Images/_Logo.png' %}" alt="Sky Logo" class="skylogo">
+
         <a href="{% url 'profile' %}" class="hover:border-b-2 hover:border-b-gray-500">Profile</a>
         <a href="{% url 'stats' %}" class="hover:border-b-2 hover:border-b-gray-500">Health Check Statistics</a>
         <a href="{% url 'quiz' %}" class="hover:border-b-2 hover:border-b-gray-500">Quiz</a>
     </div>
 
-    <div class="flex gap-8 text-lg ml-auto">
-        <img src="{% static 'Images/_Logo.png' %}" alt="Sky Logo" class="skylogo">
-        
-        <a href="{% url 'logout' %}" class="hover:border-b-2 hover:border-b-gray-500 self-center">Sign out</a>
+    <!-- Right section: Sign out -->
+    <div class="text-lg">
+        <a href="{% url 'logout' %}" class="hover:border-b-2 hover:border-b-gray-500">Sign out</a>
     </div>
 </nav>
