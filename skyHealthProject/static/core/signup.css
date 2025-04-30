@@ -1,3 +1,5 @@
+/* Work by Iqra Shah (1973224) and Barket Sheikh Omar*/
+
 html, body {
     height: 100%;
     margin: 0;
@@ -171,7 +173,7 @@ form select {
 /* Even smaller screens (smartphones) */
 @media (max-width: 480px) {
     html, body {
-        overflow-y: scroll; /* Ensure the page scrolls */
+        overflow-y: scroll;
     }
 
     form {
@@ -195,7 +197,6 @@ form select {
         font-size: 0.875rem;
     }
 
-    /* Ensure that the form doesn't overlap with the navbar */
     body {
         padding-top: 60px;
     }
