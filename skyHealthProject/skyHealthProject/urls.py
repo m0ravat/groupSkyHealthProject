@@ -19,13 +19,10 @@ from django.contrib import admin
 from django.urls import path, include
 from core import views as core_views
 from user import views as user_views
-<<<<<<< Updated upstream
-=======
-#Line 53 was implemented by Mohiuddin Mohammed (1972510)
->>>>>>> Stashed changes
-#Line 26 by Muhammad Ravat (w1984454) - Imported stats.urls folder so I can handle my routes in my app. 
-# Lines 28-43 were done by Iqra Shah (w1973224)
-#Line 53 was implemented by Mohi (1972510)
+#Line 54 was implemented by Mohiuddin Mohammed (1972510)
+#Line 27 by Muhammad Ravat (w1984454) - Imported stats.urls folder so I can handle my routes in my app. 
+# Lines 29-44 were done by Iqra Shah (w1973224)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('stats/', include('stats.urls')),
