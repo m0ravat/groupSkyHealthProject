@@ -1,3 +1,4 @@
+#completed by w2045831 Barket Sheikh Omar
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Card, Session, SessionAssignment, Vote
 from .forms import QuizForm
